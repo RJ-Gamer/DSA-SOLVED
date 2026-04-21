@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![LeetCode](https://img.shields.io/badge/LeetCode-Problems-FFA116?style=for-the-badge&logo=leetcode&logoColor=white)](https://leetcode.com/)
-[![Problems](https://img.shields.io/badge/Problems_Solved-6-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
+[![Problems](https://img.shields.io/badge/Problems_Solved-12-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
 [![Docs](https://img.shields.io/badge/Docs-Detailed-F97316?style=for-the-badge&logo=readthedocs&logoColor=white)](DSA/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-F7DF1E?style=for-the-badge&logo=opensourceinitiative&logoColor=black)](https://opensource.org/licenses/MIT)
@@ -49,7 +49,13 @@ dsa_practice/
 |   |-- 121_best_time_to_buy_and_sell/
 |   |-- 125_valid_palindrome/
 |   |-- 217_contains_duplicate/
-|   `-- 242_valid_anagram/
+|   |-- 242_valid_anagram/
+|   |-- 516_longest_palindrome_subsequence/
+|   |-- 62_unique_paths/
+|   |-- 63_unique_paths_II/
+|   |-- 647_palindrome_substrings/
+|   |-- 72_min_distance/
+|   `-- 1143_longest_common_subsequence/
 |-- .editorconfig
 |-- .gitattributes
 |-- .gitignore
@@ -92,6 +98,12 @@ This keeps the repo useful both as a practice log and as a study resource.
 | 125 | Valid Palindrome | Easy | String, Two Pointers | [Notes](DSA/125_valid_palindrome/) |
 | 217 | Contains Duplicate | Easy | Array, Hash Map | [Notes](DSA/217_contains_duplicate/) |
 | 242 | Valid Anagram | Easy | String, Hash Map | [Notes](DSA/242_valid_anagram/) |
+| 516 | Longest Palindromic Subsequence | Medium | String, Dynamic Programming | [Notes](DSA/516_longest_palindrome_subsequence/) |
+| 62 | Unique Paths | Medium | Dynamic Programming, Math | [Notes](DSA/62_unique_paths/) |
+| 63 | Unique Paths II | Medium | Dynamic Programming | [Notes](DSA/63_unique_paths_II/) |
+| 647 | Palindromic Substrings | Medium | String, Dynamic Programming | [Notes](DSA/647_palindrome_substrings/) |
+| 72 | Edit Distance | Medium | String, Dynamic Programming | [Notes](DSA/72_min_distance/) |
+| 1143 | Longest Common Subsequence | Medium | String, Dynamic Programming | [Notes](DSA/1143_longest_common_subsequence/) |
 
 ---
 
@@ -142,6 +154,7 @@ DSA/242_valid_anagram/
 - Two Pointers
 - Greedy
 - Dynamic Programming
+- Math
 
 More topics will be added as the problem set grows.
 
