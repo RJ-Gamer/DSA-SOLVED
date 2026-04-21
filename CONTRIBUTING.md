@@ -11,7 +11,7 @@ solving, not just implementation.
 ## Ground Rules
 
 - Keep folder and file naming consistent with `CLAUDE.md`
-- Every problem folder must include both a `.py` file and a `.md` file
+- Every problem folder must include both a `.py` file and a `README.md` file
 - Keep explanations clear, detailed, and structured
 - Prefer readable Python over overly clever shortcuts
 - Do not remove or rewrite existing material unless it improves correctness or clarity
@@ -24,9 +24,12 @@ For each problem, create:
 
 - `DSA/{number}_{snake_case_name}/`
 - `DSA/{number}_{snake_case_name}/{number}_lc_{snake_case_name}.py`
-- `DSA/{number}_{snake_case_name}/{number}_{snake_case_name}.md`
+- `DSA/{number}_{snake_case_name}/README.md`
 
 Use the documentation template and quality rules defined in `CLAUDE.md`.
+
+> Each problem's markdown file must be named `README.md` so GitHub renders
+> it automatically when browsing the problem folder.
 
 ---
 
@@ -62,7 +65,7 @@ fix: handle punctuation-only case in valid palindrome
 ## Pull Request Checklist
 
 - I followed the naming conventions
-- I added both the Python solution and markdown explanation
+- I added both the Python solution and `README.md` explanation
 - I updated `README.md`
 - I checked the solution for correctness
 - I kept the change focused and easy to review

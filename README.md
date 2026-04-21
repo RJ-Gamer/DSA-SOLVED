@@ -68,7 +68,7 @@ dsa_practice/
 Every problem folder should contain:
 
 1. A Python solution file
-2. A markdown explanation file with:
+2. A markdown explanation file (`README.md`) with:
    - Problem statement and constraints
    - Thinking process before implementation
    - Brute force and optimal approaches
@@ -86,12 +86,12 @@ This keeps the repo useful both as a practice log and as a study resource.
 
 | # | Problem | Difficulty | Topics | Solution |
 |---|---------|------------|--------|----------|
-| 01 | Two Sum | Easy | Array, Hash Map | [Notes](DSA/01_two_sum/01_two_sum.md) |
-| 53 | Maximum Subarray | Medium | Array, Dynamic Programming | [Notes](DSA/53_maximum_subarray/53_maximum_subarray.md) |
-| 121 | Best Time to Buy and Sell Stock | Easy | Array, Two Pointers, Greedy | [Notes](DSA/121_best_time_to_buy_and_sell/121_best_time_to_buy_and_sell.md) |
-| 125 | Valid Palindrome | Easy | String, Two Pointers | [Notes](DSA/125_valid_palindrome/125_valid_palindrome.md) |
-| 217 | Contains Duplicate | Easy | Array, Hash Map | [Notes](DSA/217_contains_duplicate/217_contains_duplicate.md) |
-| 242 | Valid Anagram | Easy | String, Hash Map | [Notes](DSA/242_valid_anagram/242_valid_anagram.md) |
+| 01 | Two Sum | Easy | Array, Hash Map | [Notes](DSA/01_two_sum/) |
+| 53 | Maximum Subarray | Medium | Array, Dynamic Programming | [Notes](DSA/53_maximum_subarray/) |
+| 121 | Best Time to Buy and Sell Stock | Easy | Array, Two Pointers, Greedy | [Notes](DSA/121_best_time_to_buy_and_sell/) |
+| 125 | Valid Palindrome | Easy | String, Two Pointers | [Notes](DSA/125_valid_palindrome/) |
+| 217 | Contains Duplicate | Easy | Array, Hash Map | [Notes](DSA/217_contains_duplicate/) |
+| 242 | Valid Anagram | Easy | String, Hash Map | [Notes](DSA/242_valid_anagram/) |
 
 ---
 
@@ -102,7 +102,7 @@ This keeps the repo useful both as a practice log and as a study resource.
 Open a folder inside `DSA/` and read:
 
 - the `.py` file for the implementation
-- the `.md` file for the explanation
+- the `README.md` file for the explanation
 
 ### Add a new problem
 
@@ -110,7 +110,7 @@ Open a folder inside `DSA/` and read:
    - `{number}_{snake_case_name}/`
 2. Add:
    - `{number}_lc_{snake_case_name}.py`
-   - `{number}_{snake_case_name}.md`
+   - `README.md`
 3. Follow the exact documentation structure in `CLAUDE.md`
 4. Update the table in this `README.md`
 
@@ -119,7 +119,7 @@ Example:
 ```text
 DSA/242_valid_anagram/
 |-- 242_lc_valid_anagram.py
-`-- 242_valid_anagram.md
+`-- README.md
 ```
 
 ---
@@ -130,7 +130,7 @@ DSA/242_valid_anagram/
 |------|--------|---------|
 | Problem folder | `{number}_{snake_case_name}/` | `125_valid_palindrome/` |
 | Python file | `{number}_lc_{snake_case_name}.py` | `125_lc_valid_palindrome.py` |
-| Markdown file | `{number}_{snake_case_name}.md` | `125_valid_palindrome.md` |
+| Markdown file | `README.md` | `README.md` |
 
 ---
 
