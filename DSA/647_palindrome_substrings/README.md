@@ -1,82 +1,75 @@
-# Palindromic Substrings
+# 647. Palindromic Substrings
 
-## The Problem
+**LeetCode:** [Problem #647](https://leetcode.com/problems/palindromic-substrings/)
+**Difficulty:** Medium
+**Topics:** `String` `Dynamic Programming`
 
-A **palindrome** is a string that reads the same forwards and backwards. `"racecar"`, `"aba"`, `"madam"` are all palindromes.
+---
 
-A **substring** is a contiguous slice of a string — every character between two positions, with nothing skipped.
+## Problem Statement
 
-The **Palindromic Substrings** problem asks: *how many substrings of a given string are palindromes?*
+Given a string `s`, return the number of **palindromic substrings** in it.
 
-Every single character counts as a palindrome by itself. So even `"abc"` has at least 3 palindromic substrings: `"a"`, `"b"`, `"c"`.
+A string is a palindrome when it reads the same backward as forward. A substring
+is a contiguous sequence of characters within the string.
+
+**Constraints:**
+- `1 <= s.length <= 1000`
+- `s` consists of lowercase English letters
 
 ### Example
+```
+Input:  s = "abc"
+Output: 3
+Explanation: Three palindromic substrings: "a", "b", "c"
+```
 
 ```
-word = "aaa"
+Input:  s = "aaa"
+Output: 6
+Explanation: Six palindromic substrings: "a", "a", "a", "aa", "aa", "aaa"
 ```
-
-All substrings:
-- Length 1: `"a"` (index 0), `"a"` (index 1), `"a"` (index 2) → all palindromes ✓
-- Length 2: `"aa"` (index 0–1), `"aa"` (index 1–2) → both palindromes ✓
-- Length 3: `"aaa"` → palindrome ✓
-
-Total: **6 palindromic substrings.**
 
 ---
 
-## The Analogy: The Mirror Window Test
+## How to Think About This Problem
 
-Imagine a row of letter tiles on a table:
+### Step 1 — Understand what's being asked
 
-```
-m  —  a  —  d  —  a  —  m
-```
+We need to count every contiguous slice of the string that reads the same
+forwards and backwards. Every single character counts as a palindrome. We
+need to count all of them, including overlapping ones.
 
-You have a transparent window you can slide along the tiles and stretch to any width. Each time you place the window over some tiles, you look at the letters inside and hold them up to a mirror. If the mirror image matches the original — it's a palindrome. Count it.
+### Step 2 — Identify the constraint that matters
 
-Your job: try every possible window position and size, and count all the palindromes you find.
+A substring `s[i..j]` is a palindrome if and only if `s[i] == s[j]` AND
+`s[i+1..j-1]` is also a palindrome. This recursive structure means smaller
+subproblems feed into larger ones — the hallmark of interval DP.
 
-The smart question is: *can you check faster than re-reading every window from scratch?*
+The brute force of checking every substring from scratch is O(n³). Both DP
+and the expand-around-center approach bring this down to O(n²).
 
-The key insight: **a substring is a palindrome if its outer characters match AND the inner substring is also a palindrome.**
+### Step 3 — Think about data structures
 
----
+Three approaches:
+1. **Memoized recursion** — top-down, O(n²) time and space
+2. **Interval DP table** — bottom-up boolean grid, O(n²) time and space
+3. **Expand around center** — O(n²) time, O(1) space
 
-## Substrings vs. Subsequences
+The expand-around-center approach is the most space-efficient and the most
+commonly expected in interviews.
 
-This problem is closely related to [Longest Palindromic Subsequence](longest_palindrome_subsequence.md), but with a crucial difference:
+### Step 4 — Build the intuition
 
-| | Palindromic Substrings | Longest Palindromic Subsequence |
-|---|---|---|
-| **Characters** | Must be contiguous — no skipping | Can skip characters |
-| **Question** | *Count* how many substrings are palindromes | *Longest length* that is a palindrome |
-| `"abc"` | 3 palindromic substrings | LPS = 1 |
-| `"aba"` | 4 palindromic substrings | LPS = 3 |
-
----
-
-## Why This Is Interval DP
-
-`is_palindrome(i, j)` breaks down like this:
-
-- **Base:** If `i >= j` → always a palindrome (single character or empty string).
-- **Outer characters match** (`word[i] == word[j]`): `word[i..j]` is a palindrome **if and only if** `word[i+1..j-1]` is also a palindrome.
-- **Outer characters don't match**: `word[i..j]` is **not** a palindrome. No need to look inside.
-
-This is interval DP: the answer for `[i, j]` depends on the inner interval `[i+1, j-1]`.
-
-The recurrence:
-
-```
-is_palindrome(i, j) = (word[i] == word[j])  AND  is_palindrome(i+1, j-1)
-```
-
-Unlike Longest Palindromic Subsequence — which had a `max(skip-left, skip-right)` fallback — here there is no "try both." If the outer characters don't match, the whole substring fails immediately.
+Every palindrome has a center. Odd-length palindromes have a single character
+at the center; even-length palindromes have a gap between two characters.
+For each of the `2n - 1` possible centers, expand outward as long as the
+characters on both sides match. Each successful expansion is one more
+palindromic substring.
 
 ---
 
-## Setting Up the Grid
+## Approaches
 
 For a string of length `n`, create an `n × n` boolean grid:
 
@@ -208,7 +201,7 @@ Count all `True` cells: 5 (diagonal) + 1 (`"ada"`) + 1 (`"madam"`) = **7**. ✓
 
 ---
 
-## Solution 1: Memoized Recursion (Top-Down)
+### Approach 1 — Memoized Recursion (Top-Down)
 
 The most direct approach: write `is_palindrome` as a recursive function and let memoization avoid recomputing the same `(i, j)` pair twice.
 
@@ -245,7 +238,7 @@ class Solution:
 
 ---
 
-## Solution 2: Interval DP — Boolean Table (Bottom-Up)
+### Approach 2 — Interval DP Table (Bottom-Up)
 
 Instead of recursing top-down, fill the `dp` table from shorter intervals to longer ones.
 
@@ -286,7 +279,7 @@ class Solution:
 
 ---
 
-## Solution 3: Expand Around Center (Space-Optimized)
+### Approach 3 — Optimal (Expand Around Center)
 
 Every palindrome has a **center**:
 - Odd-length palindromes (`"aba"`, `"madam"`) have a single center character.
@@ -344,9 +337,130 @@ Total: `"m"`, `"a"`, `"d"`, `"a"`, `"m"`, `"ada"`, `"madam"` = **7** ✓
 
 ---
 
-## Quick Summary
+---
 
-| Situation | What we do |
+## Solution Breakdown — Step by Step
+
+```python
+def palindromic_substrings_center(s: str) -> int:
+    size = len(s)
+    count = 0
+    for center in range(size):
+        left, right = center, center
+        while left >= 0 and right < size and s[left] == s[right]:
+            count += 1
+            left -= 1
+            right += 1
+        left, right = center, center + 1
+        while left >= 0 and right < size and s[left] == s[right]:
+            count += 1
+            left -= 1
+            right += 1
+    return count
+```
+
+**Line by line:**
+
+`for center in range(size):`
+- Iterate over every possible center position
+- There are `n` single-character centers and `n-1` gap centers — we handle both in each iteration
+
+`left, right = center, center`
+- Start both pointers at the same character — odd-length palindrome expansion
+
+`while left >= 0 and right < size and s[left] == s[right]:`
+- Expand outward as long as the characters match and we stay in bounds
+- Each iteration of this loop confirms one more palindromic substring
+
+`count += 1`
+- Every successful expansion is a valid palindromic substring — count it immediately
+
+`left -= 1; right += 1`
+- Move both pointers outward to check the next larger palindrome centered here
+
+`left, right = center, center + 1`
+- Reset for even-length expansion — the center is the gap between `center` and `center + 1`
+
+---
+
+## Common Mistakes
+
+**1. Only checking odd-length palindromes**
+```python
+for center in range(size):
+    left, right = center, center
+    while ...:  # only odd-length
+        count += 1
+# Missing the even-length expansion entirely
+```
+Always run both expansions per center: one starting at `(center, center)` and
+one at `(center, center + 1)`.
+
+**2. Counting after the loop instead of inside it**
+```python
+while left >= 0 and right < size and s[left] == s[right]:
+    left -= 1
+    right += 1
+count += 1  # WRONG — only counts one palindrome per center
+```
+Increment `count` inside the while loop — each successful expansion is a
+separate palindromic substring.
+
+**3. Handling length-2 separately in the DP approach**
+For `length = 2`, `dp[i+1][j-1]` = `dp[i+1][i]` which is in the lower triangle
+(invalid). Always handle length 2 as a special case before the main loop.
+
+**4. Confusing substrings with subsequences**
+Substrings must be contiguous. `"ace"` is a subsequence of `"abcde"` but not
+a substring. This problem counts substrings only.
+
+---
+
+## Pattern Recognition
+
+> Use the **expand-around-center** pattern when you see:
+> - "Count palindromic substrings"
+> - "Find the longest palindromic substring"
+> - Any problem requiring palindrome detection on contiguous slices
+
+**Similar problems:**
+- **Longest Palindromic Substring** — same expand-around-center, track the longest instead of counting
+- **Longest Palindromic Subsequence** — interval DP, but characters can be skipped
+- **Palindrome Partitioning** — use the same palindrome check as a subroutine for partitioning
+- **Minimum Cuts for Palindrome Partitioning** — DP using palindrome check results
+
+---
+
+## Real World Use Cases
+
+### 1. DNA motif detection in bioinformatics
+Palindromic sequences in DNA (where the reverse complement matches the original)
+are recognition sites for restriction enzymes. Counting and locating all
+palindromic substrings in a genome sequence is a direct application of this
+algorithm at scale.
+
+### 2. Natural language processing — symmetry detection
+NLP pipelines that detect symmetric or repetitive patterns in text (for
+stylometric analysis or authorship attribution) use palindrome-counting as
+one signal. The expand-around-center approach processes large corpora efficiently.
+
+### 3. Data compression — run-length encoding preprocessing
+Identifying palindromic regions in data streams helps compression algorithms
+find redundant patterns. Palindromic substrings indicate local symmetry that
+can be encoded more compactly.
+
+---
+
+## Key Takeaways
+
+- Every palindrome has a center — expand outward from all `2n - 1` possible centers
+- Odd-length palindromes expand from a single character; even-length from a gap between two characters
+- Count inside the expansion loop, not after it — each successful expansion is a distinct palindrome
+- The expand-around-center approach achieves O(n²) time with O(1) space — better than the DP table
+- This problem differs from Longest Palindromic Subsequence: substrings are contiguous, subsequences are not
+
+---
+
 |---|---|
 | `word[i] == word[j]` AND inner is palindrome | `dp[i][j] = True`, increment count |
 | `word[i] != word[j]` | `dp[i][j] = False` — no need to check inside |

@@ -390,6 +390,16 @@ significantly.
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (sort) | O(n log n) | O(n) |
+| Optimal (two hash maps) | O(n) | O(1) |
+| Pythonic (Counter) | O(n) | O(1) |
+
+---
+
 ## Key Takeaways
 
 - Two strings are anagrams if and only if their character frequency maps are
@@ -401,3 +411,13 @@ significantly.
   strictly better than the O(n log n) sort approach
 - `Counter` from `collections` is the Pythonic shortcut, but understanding the
   manual implementation is what interviewers are testing
+
+---
+
+## Where to Practice
+
+| Platform | Problem | Difficulty |
+|---|---|---|
+| [LeetCode #242](https://leetcode.com/problems/valid-anagram/) | Valid Anagram | Easy |
+
+> This problem is part of the **Blind 75** and **NeetCode 150** interview prep lists.

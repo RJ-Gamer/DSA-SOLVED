@@ -12,6 +12,10 @@ solving, not just implementation.
 
 - Keep folder and file naming consistent with `CLAUDE.md`
 - Every problem folder must include both a `.py` file and a `README.md` file
+- Every `README.md` must follow the full structure defined in `CLAUDE.md`:
+  - LeetCode header, Problem Statement, How to Think, Approaches, Solution Breakdown,
+    Quick Summary, Common Mistakes, Pattern Recognition, Real World Use Cases,
+    Key Takeaways, Where to Practice
 - Keep explanations clear, detailed, and structured
 - Prefer readable Python over overly clever shortcuts
 - Do not remove or rewrite existing material unless it improves correctness or clarity

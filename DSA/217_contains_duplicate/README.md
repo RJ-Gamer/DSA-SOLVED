@@ -327,9 +327,29 @@ at storage scale rather than in-memory scale.
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (hash set, early exit) | O(n) | O(n) |
+| One-liner (length comparison) | O(n) | O(n) |
+
+---
+
 ## Key Takeaways
 
 - A hash set gives O(1) membership testing — use it whenever you need "have I seen X?"
 - Early return on first duplicate is more efficient than building the full set first
 - Trading O(n) space for O(n) time (instead of O(n²) time with O(1) space) is almost always the right call
 - The `in` operator on a Python list is O(n); on a set it is O(1) — this distinction defines your algorithm's complexity
+
+---
+
+## Where to Practice
+
+| Platform | Problem | Difficulty |
+|---|---|---|
+| [LeetCode #217](https://leetcode.com/problems/contains-duplicate/) | Contains Duplicate | Easy |
+
+> This problem is part of the **Blind 75** and **NeetCode 150** interview prep lists.

@@ -344,6 +344,15 @@ Product teams use this to identify when users discover value in a feature.
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (running minimum) | O(n) | O(1) |
+
+---
+
 ## Key Takeaways
 
 - You never need to look back — a running minimum accumulates the best buy price automatically
@@ -351,3 +360,13 @@ Product teams use this to identify when users discover value in a feature.
 - Use `elif` for the profit branch: if you're updating `min_price`, you're not selling that day
 - Initialize `max_profit = 0` — the "no trade" option is always available
 - This problem is equivalent to finding the max subarray sum on the array of daily price differences
+
+---
+
+## Where to Practice
+
+| Platform | Problem | Difficulty |
+|---|---|---|
+| [LeetCode #121](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Best Time to Buy and Sell Stock | Easy |
+
+> This problem is part of the **Blind 75** and **NeetCode 150** interview prep lists.

@@ -313,6 +313,15 @@ more practical than O(n²) when n is in the tens of millions.
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (Kadane's algorithm) | O(n) | O(1) |
+
+---
+
 ## Key Takeaways
 
 - Kadane's algorithm makes one greedy local decision per element: extend or restart
@@ -320,3 +329,13 @@ more practical than O(n²) when n is in the tens of millions.
 - The recurrence `current_sum = max(num, current_sum + num)` captures the entire algorithm
 - This is a Dynamic Programming problem where the subproblem is "best subarray ending here"
 - O(n) time and O(1) space — no auxiliary storage needed beyond two variables
+
+---
+
+## Where to Practice
+
+| Platform | Problem | Difficulty |
+|---|---|---|
+| [LeetCode #53](https://leetcode.com/problems/maximum-subarray/) | Maximum Subarray | Medium |
+
+> This problem is part of the **Blind 75** and **NeetCode 150** interview prep lists.

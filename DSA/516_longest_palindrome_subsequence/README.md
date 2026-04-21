@@ -1,72 +1,81 @@
-# Longest Palindromic Subsequence
+# 516. Longest Palindromic Subsequence
 
-## The Problem
+**LeetCode:** [Problem #516](https://leetcode.com/problems/longest-palindromic-subsequence/)
+**Difficulty:** Medium
+**Topics:** `String` `Dynamic Programming`
 
-A **palindrome** is a string that reads the same forwards and backwards. `"racecar"`, `"madam"`, `"level"` are all palindromes.
+---
 
-A **subsequence** is a subset of characters taken in order (you can skip characters, but you can't rearrange them).
+## Problem Statement
 
-The **Longest Palindromic Subsequence (LPS)** of a string is the longest subsequence you can pull out of it that forms a palindrome.
+Given a string `s`, find the longest subsequence of `s` that is a palindrome.
+Return its length.
+
+A **subsequence** is derived from a string by deleting some (or no) characters
+without changing the order of the remaining characters.
+
+**Constraints:**
+- `1 <= s.length <= 1000`
+- `s` consists only of lowercase English letters
 
 ### Example
+```
+Input:  s = "bbbab"
+Output: 4
+Explanation: One possible longest palindromic subsequence is "bbbb".
+```
 
 ```
-word = "total"
+Input:  s = "cbbd"
+Output: 2
+Explanation: One possible longest palindromic subsequence is "bb".
 ```
 
-Characters: `t o t a l`
-
-Some palindromic subsequences hidden inside:
-- `"t"` (length 1) — trivially
-- `"o"` (length 1) — trivially
-- `"tot"` — take t(index 0), o(index 1), t(index 2). Reads same forwards and back ✓
-
-Can we find anything longer? We'd need length 4 or 5.
-- `"tota"` → not a palindrome
-- `"ttal"` → not a palindrome
-- `"total"` → t≠l, not a palindrome
-
-The longest we can find is `"tot"` with length **3**. That's the answer.
+```
+Input:  s = "total"
+Output: 3
+Explanation: The longest palindromic subsequence is "tot".
+```
 
 ---
 
-## The Analogy: The Bead Mirror Test
+## How to Think About This Problem
 
-Imagine you have a **necklace of lettered beads**: `t — o — t — a — l`
+### Step 1 — Understand what's being asked
 
-You can **remove** beads (but you cannot rearrange them). Your goal: find the longest string of remaining beads that looks the same whether you read left-to-right or right-to-left — a **mirrored necklace**.
+We need the longest subsequence of a single string that reads the same forwards
+and backwards. Unlike substrings, subsequences allow skipping characters. Unlike
+Longest Common Subsequence, we only have one string — we are comparing it
+against itself.
 
-> The bead mirror test: hold the necklace up to a mirror. If it looks the same as the original, you've found a palindromic subsequence.
+### Step 2 — Identify the constraint that matters
 
-Now, how do you find the **longest** such mirrored necklace efficiently?
+The key observation: check the outermost characters of any interval `[i, j]`.
+- If `s[i] == s[j]` — they can form the outer shell of a palindrome. The best
+  answer is `grid[i+1][j-1] + 2`.
+- If `s[i] != s[j]` — at most one of them can be in the palindrome's outer
+  shell. Try excluding each and take the better result: `max(grid[i+1][j], grid[i][j-1])`.
 
-The key insight: **check the outermost beads first**.
+This is **Interval DP**: the answer for interval `[i, j]` depends on strictly
+smaller intervals inside it.
 
-- If the **first** and **last** bead match → great! They can form the outer shell of a palindrome. Now find the best palindrome in the **middle** (the inner beads), and add 2.
-- If they **don't** match → one of them can't be part of this palindrome's outer shell. Try excluding the first bead and solving the smaller problem. Then try excluding the last bead. Take whichever gives a longer palindrome.
+### Step 3 — Think about data structures
 
-This "check from outside in" approach is exactly what the algorithm does.
+We need an `n × n` grid where `grid[i][j]` = length of the longest palindromic
+subsequence of `s[i..j]`. We must fill shorter intervals before longer ones.
+The two-row space optimization reduces space from O(n²) to O(n).
+
+### Step 4 — Build the intuition
+
+Imagine a necklace of lettered beads. You can remove beads but not rearrange
+them. You want the longest remaining necklace that looks the same forwards and
+backwards. Start by checking the outermost beads: if they match, they form the
+shell of a palindrome and you recurse inward. If they don't, try removing one
+end and solve the smaller problem.
 
 ---
 
-## Why This Needs Interval DP (Not Just Grid DP)
-
-In the Grid Pattern (LCS, Edit Distance), the subproblem `dp[i][j]` means:
-> "Look at the first `i` characters of one string and first `j` of another."
-
-Here, **we have only one string**. The subproblem is:
-> "What is the longest palindromic subsequence of `word[i..j]`?" — a substring defined by a start `i` and an end `j`.
-
-This is an **interval** `[i, j]`. The problem on a big interval depends on problems on **smaller intervals inside it** — specifically:
-- `dp[i+1][j-1]` — the interval one step inward from both ends
-- `dp[i+1][j]` — the interval excluding the left end
-- `dp[i][j-1]` — the interval excluding the right end
-
-We **must** solve shorter intervals before longer ones. This is the Interval DP pattern.
-
----
-
-## Setting Up the Grid
+## Approaches
 
 For a string of length `n`, we create an `n × n` grid:
 
@@ -368,7 +377,7 @@ grid[0][4] = max( grid[1][4]=1, grid[0][3]=3 ) = 3
 
 ---
 
-## Solution 1: Full Grid (O(n²) Space)
+### Approach 1 — Full Grid (Tabulation)
 
 ```python
 class Solution:
@@ -407,7 +416,7 @@ print(sol.longest_palindrome_subsequence("loop"))  # Output: 2
 
 ---
 
-## Solution 2: Space-Optimized (O(n) Space)
+### Approach 2 — Optimal (Two-Row Space Optimization)
 
 ### The Key Insight
 
@@ -549,9 +558,125 @@ print(sol.longest_palindrome_subsequence_optimized("loop"))  # Output: 2
 
 ---
 
-## Quick Summary
+---
 
-| Situation | What we do |
+## Solution Breakdown — Step by Step
+
+```python
+def longest_palindrome_subsequence(word: str) -> int:
+    size = len(word)
+    prev_row = [0] * size
+    curr_row = [0] * size
+    for i in range(size - 1, -1, -1):
+        curr_row[i] = 1
+        for j in range(i + 1, size):
+            if word[i] == word[j]:
+                curr_row[j] = prev_row[j - 1] + 2
+            else:
+                curr_row[j] = max(prev_row[j], curr_row[j - 1])
+        prev_row, curr_row = curr_row, prev_row
+        curr_row = [0] * size
+    return prev_row[size - 1]
+```
+
+**Line by line:**
+
+`for i in range(size - 1, -1, -1):`
+- Process rows from bottom to top — shorter intervals before longer ones
+- Row `i` represents all intervals starting at index `i`
+
+`curr_row[i] = 1`
+- Base case: a single character `word[i..i]` is always a palindrome of length 1
+
+`if word[i] == word[j]: curr_row[j] = prev_row[j-1] + 2`
+- Characters match — wrap them around the best palindrome in the inner interval
+- `prev_row[j-1]` = `grid[i+1][j-1]` (row below, one column left)
+
+`curr_row[j] = max(prev_row[j], curr_row[j-1])`
+- Characters don't match — take the better of excluding the left or right character
+- `prev_row[j]` = `grid[i+1][j]` (skip left), `curr_row[j-1]` = `grid[i][j-1]` (skip right)
+
+`prev_row, curr_row = curr_row, prev_row; curr_row = [0] * size`
+- Promote the finished row to `prev_row`, reset `curr_row` for the next iteration
+
+`return prev_row[size - 1]`
+- After the final swap, the completed top row lives in `prev_row`; its last element is the answer
+
+---
+
+## Common Mistakes
+
+**1. Returning `prev_row[size-1]` vs `curr_row[size-1]`**
+```python
+prev_row, curr_row = curr_row, prev_row
+curr_row = [0] * size
+return curr_row[size - 1]  # WRONG — curr_row was just reset to zeros
+```
+After the swap, the completed row is in `prev_row`. Always return `prev_row[size-1]`.
+
+**2. Using `curr_row[j-1]` instead of `prev_row[j-1]` for the match case**
+```python
+curr_row[j] = curr_row[j - 1] + 2  # WRONG — this is the left neighbor, not the diagonal
+```
+When characters match, we need `grid[i+1][j-1]` — the row below, one column left.
+In the two-row system that is `prev_row[j-1]`, not `curr_row[j-1]`.
+
+**3. Filling the grid left-to-right instead of bottom-to-top**
+Interval DP requires solving shorter intervals before longer ones. Processing
+bottom-to-top (decreasing `i`) ensures `grid[i+1][...]` is always ready when
+we compute `grid[i][...]`.
+
+**4. Confusing LPS with Palindromic Substrings**
+LPS allows skipping characters (subsequence). Palindromic Substrings counts
+contiguous slices only. They use different recurrences.
+
+---
+
+## Pattern Recognition
+
+> Use the **interval DP** pattern when you see:
+> - "Longest palindromic subsequence of a string"
+> - A single-string problem where the subproblem is defined by a start and end index
+> - The answer for `[i, j]` depends on strictly smaller intervals inside it
+
+**Similar problems:**
+- **Palindromic Substrings** — same interval structure, count palindromes instead of finding the longest
+- **Minimum Insertions to Make a String Palindrome** — `n - LPS(s)` gives the answer
+- **Longest Common Subsequence** — LPS of `s` equals LCS of `s` and `reverse(s)`
+- **Burst Balloons** — interval DP where the subproblem is also defined by `[i, j]`
+
+---
+
+## Real World Use Cases
+
+### 1. RNA secondary structure prediction in bioinformatics
+RNA molecules fold back on themselves to form palindromic base-pair structures.
+Finding the longest palindromic subsequence of an RNA sequence identifies the
+most stable folding configuration — a direct application of this algorithm in
+computational biology.
+
+### 2. Data compression — symmetric pattern detection
+Identifying the longest palindromic subsequence in a data stream helps
+compression algorithms detect symmetric redundancy. Regions with long LPS
+can be encoded more compactly using back-references.
+
+### 3. Cryptographic sequence analysis
+In certain cipher analysis tasks, finding the longest palindromic subsequence
+of an encoded message helps identify repeating symmetric patterns that may
+reveal structural properties of the encryption key.
+
+---
+
+## Key Takeaways
+
+- `grid[i][j]` = length of the longest palindromic subsequence of `s[i..j]`
+- Matching outer characters extend the inner palindrome by 2; mismatches take the max of two sub-intervals
+- Fill order must be bottom-to-top (shorter intervals first) — not top-to-bottom
+- The two-row optimization reduces space from O(n²) to O(n) with no time penalty
+- LPS of `s` equals LCS of `s` and `reverse(s)` — a useful alternative formulation
+
+---
+
 |---|---|
 | Single character `word[i..i]` | Base case: LPS = 1 |
 | `word[i] == word[j]` | `grid[i][j] = grid[i+1][j-1] + 2` |

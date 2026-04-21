@@ -325,6 +325,15 @@ intermediate strings.
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (clean + reverse) | O(n) | O(n) |
+| Optimal (two pointers) | O(n) | O(1) |
+
+---
+
 ## Key Takeaways
 
 - The real problem is not "is the raw string a palindrome?" but "is the
@@ -334,3 +343,13 @@ intermediate strings.
 - Skipping irrelevant characters in place gives O(1) extra space
 - Always guard pointer movement when skipping characters to avoid edge-case
   index errors
+
+---
+
+## Where to Practice
+
+| Platform | Problem | Difficulty |
+|---|---|---|
+| [LeetCode #125](https://leetcode.com/problems/valid-palindrome/) | Valid Palindrome | Easy |
+
+> This problem is part of the **Blind 75** and **NeetCode 150** interview prep lists.

@@ -1,34 +1,79 @@
-# Longest Common Subsequence
+# 1143. Longest Common Subsequence
 
-## The Problem
-
-Imagine you and your friend both have a **sticker album**. Each sticker has a letter on it, and they are arranged in a line.
-
-- Your album:     `a - b - c - d - e`
-- Friend's album: `a - c - e`
-
-You want to find the **longest matching sequence of stickers** that appears in **both albums**, in the **same order** — but you're allowed to **skip stickers** in between!
-
-In this case, both albums share `a`, `c`, and `e` (in that order). So the answer is **3**.
-
-> **Subsequence** = you can skip letters, but you can't rearrange them.
+**LeetCode:** [Problem #1143](https://leetcode.com/problems/longest-common-subsequence/)
+**Difficulty:** Medium
+**Topics:** `String` `Dynamic Programming`
 
 ---
 
-## The Analogy: The Treasure Map Grid
+## Problem Statement
 
-Think of solving this like filling in a **treasure map grid**.
+Given two strings `text1` and `text2`, return the length of their **longest
+common subsequence**. If there is no common subsequence, return `0`.
 
-- Rows = stickers in **your** album
-- Columns = stickers in your **friend's** album
-- Each cell on the map answers the question:
-  > "If I only looked at the stickers up to this point in both albums, what's the longest matching chain I can find?"
+A **subsequence** is a sequence derived from a string by deleting some (or no)
+characters without changing the order of the remaining characters.
 
-We fill this map cell by cell, left-to-right, top-to-bottom. By the time we reach the **bottom-right corner**, we have our answer!
+A **common subsequence** is a subsequence that appears in both strings.
+
+**Constraints:**
+- `1 <= text1.length, text2.length <= 1000`
+- `text1` and `text2` consist of lowercase English letters
+
+### Example
+```
+Input:  text1 = "abcde", text2 = "ace"
+Output: 3
+Explanation: The longest common subsequence is "ace" (length 3).
+```
+
+```
+Input:  text1 = "abc", text2 = "abc"
+Output: 3
+Explanation: The longest common subsequence is "abc" (length 3).
+```
+
+```
+Input:  text1 = "abc", text2 = "def"
+Output: 0
+Explanation: No common subsequence exists.
+```
 
 ---
 
-## Step-by-Step Walkthrough
+## How to Think About This Problem
+
+### Step 1 — Understand what's being asked
+
+We need the longest sequence of characters that appears in both strings in the
+same relative order, but not necessarily contiguously. Unlike substrings,
+subsequences allow skipping characters.
+
+### Step 2 — Identify the constraint that matters
+
+At each pair of positions `(i, j)`, we compare one character from each string.
+If they match, we extend the best subsequence found before either character.
+If they don't, we take the best result from skipping one character in either
+string. This overlapping subproblem structure requires DP.
+
+### Step 3 — Think about data structures
+
+We build a 2D grid where `grid[i][j]` = length of the LCS of `text1[:i]` and
+`text2[:j]`. Each cell depends on the diagonal (match) or the max of above/left
+(skip). The full grid uses O(m × n) space; the two-row optimization reduces
+this to O(n).
+
+### Step 4 — Build the intuition
+
+Think of filling a treasure map grid. Rows represent characters of `text1`,
+columns represent characters of `text2`. Each cell answers: "What is the
+longest matching chain I can build using only the characters up to this point
+in both strings?" Fill left-to-right, top-to-bottom. The bottom-right corner
+holds the answer.
+
+---
+
+## Approaches
 
 ### Step 1: Set Up the Grid
 
@@ -151,7 +196,7 @@ The bottom-right cell is **3**, which matches `a-c-e`.
 
 ---
 
-## Solution 1: Full Grid (O(m × n) Space)
+### Approach 1 — Full Grid (Tabulation)
 
 ```python
 class Solution:
@@ -187,7 +232,7 @@ print(sol.longest_common_subsequence_mxn("september", "december"))  # Output: 6
 
 ---
 
-## Solution 2: Space-Optimized (O(n) Space)
+### Approach 2 — Optimal (Two-Row Space Optimization)
 
 ### The Key Insight
 
@@ -271,9 +316,124 @@ print(sol.longest_common_subsequence_optimal("september", "december"))  # Output
 
 ---
 
-## Quick Summary
+---
 
-| Situation | What we do |
+## Solution Breakdown — Step by Step
+
+```python
+def longest_common_subsequence(text1: str, text2: str) -> int:
+    m, n = len(text1), len(text2)
+    prev = [0] * (n + 1)
+    curr = [0] * (n + 1)
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if text1[i - 1] == text2[j - 1]:
+                curr[j] = 1 + prev[j - 1]
+            else:
+                curr[j] = max(prev[j], curr[j - 1])
+        prev, curr = curr, prev
+        curr = [0] * (n + 1)
+    return prev[n]
+```
+
+**Line by line:**
+
+`prev = [0] * (n + 1); curr = [0] * (n + 1)`
+- Two rows of length `n + 1` — the extra cell at index 0 represents the empty string base case
+- All zeros: LCS with an empty string is always 0
+
+`for i in range(1, m + 1):`
+- Process each character of `text1` one row at a time
+
+`if text1[i-1] == text2[j-1]: curr[j] = 1 + prev[j-1]`
+- Characters match — extend the chain from the diagonal (before either character was considered)
+- `prev[j-1]` is `grid[i-1][j-1]` in the full grid — the row above, one column left
+
+`curr[j] = max(prev[j], curr[j-1])`
+- Characters don't match — take the best from skipping `text1[i-1]` (above: `prev[j]`)
+  or skipping `text2[j-1]` (left: `curr[j-1]`)
+
+`prev, curr = curr, prev; curr = [0] * (n + 1)`
+- Promote the finished row to `prev`, reset `curr` for the next row
+
+`return prev[n]`
+- After the last swap, the completed row lives in `prev`; its last element is the answer
+
+---
+
+## Common Mistakes
+
+**1. Returning `curr[n]` instead of `prev[n]` in the two-row approach**
+```python
+prev, curr = curr, prev
+curr = [0] * (n + 1)
+return curr[n]  # WRONG — curr was just reset to zeros
+```
+After the swap, the completed row is in `prev`. Always return `prev[n]`.
+
+**2. Forgetting the extra row and column for the empty string base case**
+```python
+grid = [[0] * n for _ in range(m)]  # WRONG — missing the +1
+```
+The grid must be `(m+1) × (n+1)`. Row 0 and column 0 represent empty string
+base cases and must stay 0.
+
+**3. Using `grid[i][j-1]` for the diagonal instead of `grid[i-1][j-1]`**
+```python
+curr[j] = 1 + curr[j - 1]  # WRONG — this is the left neighbor, not the diagonal
+```
+When characters match, we need the diagonal: `prev[j-1]` (row above, column left).
+
+**4. Confusing LCS with Longest Common Substring**
+LCS allows skipping characters (subsequence). Longest Common Substring requires
+contiguous characters. They use different recurrences — don't mix them up.
+
+---
+
+## Pattern Recognition
+
+> Use the **LCS grid DP** pattern when you see:
+> - "Longest common subsequence of two strings"
+> - "Minimum deletions to make two strings equal"
+> - Any problem comparing two sequences where order matters but gaps are allowed
+
+**Similar problems:**
+- **Edit Distance** — same grid structure, counts operations instead of matches
+- **Shortest Common Supersequence** — build on LCS: `len(s1) + len(s2) - LCS`
+- **Delete Operation for Two Strings** — minimum deletions = `len(s1) + len(s2) - 2 * LCS`
+- **Longest Increasing Subsequence** — LCS of the array with its sorted version
+
+---
+
+## Real World Use Cases
+
+### 1. Diff tools and version control
+Git's diff algorithm finds the longest common subsequence of lines between two
+file versions. Lines in the LCS are unchanged; everything else is an insertion
+or deletion. The two-row optimization is critical for diffing large files.
+
+### 2. DNA sequence alignment in bioinformatics
+Comparing two DNA or protein sequences to find conserved regions uses LCS as
+the foundation. The longest common subsequence of two genomes identifies
+evolutionarily conserved segments across species.
+
+### 3. Plagiarism detection in academic systems
+Plagiarism detectors compare the LCS of a submitted document against a
+corpus of known works. A high LCS ratio relative to document length is a
+strong signal of copied content, even when words are reordered or paraphrased.
+
+---
+
+## Key Takeaways
+
+- `grid[i][j]` = LCS length of `text1[:i]` and `text2[:j]`
+- Matching characters extend the diagonal; mismatches take the max of above or left
+- The two-row optimization reduces space from O(m × n) to O(n) with no time penalty
+- After the final row swap, the answer is in `prev[n]`, not `curr[n]`
+- LCS is the foundation for edit distance, diff tools, and sequence alignment
+
+---
+
 |---|---|
 | Letters match | Diagonal value + 1 |
 | Letters don't match | Max of above or left |

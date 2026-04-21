@@ -1,39 +1,97 @@
-# Edit Distance (Minimum Edit Distance)
+# 72. Edit Distance
 
-## The Problem
-
-You are a **manuscript editor**. An author gave you a draft, but the final published text is different. Your job: figure out the **fewest pen strokes** to turn the draft into the final text.
-
-You have exactly three tools in your editor's toolkit:
-
-| Tool | What it does | Example |
-|---|---|---|
-| **Delete** | Cross out a letter | `horse` → `hrse` (deleted `o`) |
-| **Insert** | Squeeze in a new letter | `hrse` → `horse` (inserted `o`) |
-| **Replace** | Cross out and rewrite | `horse` → `morse` (replaced `h` with `m`) |
-
-The **edit distance** (also called Levenshtein distance) between two strings is the **minimum number of these three operations** needed to transform one string into the other.
+**LeetCode:** [Problem #72](https://leetcode.com/problems/edit-distance/)
+**Difficulty:** Medium
+**Topics:** `String` `Dynamic Programming`
 
 ---
 
-### Concrete Example
+## Problem Statement
 
-**Draft:** `"horse"`
-**Final:** `"ros"`
+Given two strings `word1` and `word2`, return the minimum number of operations
+required to convert `word1` into `word2`.
 
-One way to get there in **3 moves**:
+You have three operations, each costing 1:
+- **Insert** a character
+- **Delete** a character
+- **Replace** a character
+
+This minimum is known as the **Levenshtein distance**.
+
+**Constraints:**
+- `0 <= word1.length, word2.length <= 500`
+- `word1` and `word2` consist of lowercase English letters
+
+### Example
+```
+Input:  word1 = "horse", word2 = "ros"
+Output: 3
+Explanation:
+horse → rorse (replace 'h' with 'r')
+rorse → rose  (delete 'r')
+rose  → ros   (delete 'e')
+```
 
 ```
-horse
- ↓ replace 'h' with 'r'
-rorse
- ↓ delete the second 'r'
-rose
- ↓ delete 'e'
-ros  ✓
+Input:  word1 = "intention", word2 = "execution"
+Output: 5
 ```
 
-There is no way to do it in 2 moves — so the edit distance is **3**.
+```
+Input:  word1 = "", word2 = "abc"
+Output: 3
+Explanation: Three insertions needed.
+```
+
+---
+
+## How to Think About This Problem
+
+### Step 1 — Understand what's being asked
+
+We need the minimum number of single-character edits (insert, delete, replace)
+to transform one string into another. The order of operations matters, but we
+don't need to track the actual sequence — only the minimum count.
+
+### Step 2 — Identify the constraint that matters
+
+At each position, we compare one character from each string. If they match,
+no operation is needed. If they don't, we must choose the cheapest of three
+operations. The cost of each choice depends on the costs of smaller subproblems
+— this is the classic overlapping subproblem structure of DP.
+
+### Step 3 — Think about data structures
+
+We build a 2D grid where `grid[i][j]` = minimum edits to convert the first `j`
+characters of `word1` into the first `i` characters of `word2`. Each cell
+depends on three neighbors: diagonal (replace/match), left (delete), above (insert).
+
+### Step 4 — Build the intuition
+
+Think of the grid as a scoreboard tracking partial progress. The first row
+represents converting any prefix of `word1` into an empty string (all deletes).
+The first column represents converting an empty string into any prefix of `word2`
+(all inserts). Every other cell picks the cheapest of three operations.
+
+---
+
+## The Three Operations and Their Neighbors
+
+```
+┌───────────┬───────────┐
+│ diagonal  │   above   │
+│ [i-1][j-1]│  [i-1][j] │
+│  REPLACE  │  INSERT   │
+├───────────┼───────────┤
+│   left    │  current  │
+│  [i][j-1] │   [i][j]  │
+│  DELETE   │           │
+└───────────┴───────────┘
+```
+
+- **Diagonal** = both characters consumed (replace or free match)
+- **Above** = only the target character consumed (insert into source)
+- **Left** = only the source character consumed (delete from source)
 
 ---
 
@@ -374,11 +432,128 @@ The actual 3-step path we traced:
 
 ---
 
-## The Full Code
+## Solution Breakdown — Step by Step
 
 ```python
-class Solution:
-    def min_distance(self, first_word: str, second_word: str) -> int:
+def min_distance(word1: str, word2: str) -> int:
+    m, n = len(word1), len(word2)
+    grid = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(m + 1):
+        grid[0][i] = i
+    for i in range(n + 1):
+        grid[i][0] = i
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if word1[j - 1] == word2[i - 1]:
+                grid[i][j] = grid[i - 1][j - 1]
+            else:
+                grid[i][j] = 1 + min(grid[i - 1][j - 1], grid[i][j - 1], grid[i - 1][j])
+    return grid[n][m]
+```
+
+**Line by line:**
+
+`grid = [[0] * (m + 1) for _ in range(n + 1)]`
+- Creates an `(n+1) × (m+1)` grid — one extra row and column for the empty string base cases
+
+`for i in range(m + 1): grid[0][i] = i`
+- First row: converting any prefix of `word1` to an empty string costs `i` deletions
+
+`for i in range(n + 1): grid[i][0] = i`
+- First column: converting an empty string to any prefix of `word2` costs `i` insertions
+
+`if word1[j-1] == word2[i-1]: grid[i][j] = grid[i-1][j-1]`
+- Characters match — no operation needed, carry the diagonal cost forward
+
+`grid[i][j] = 1 + min(grid[i-1][j-1], grid[i][j-1], grid[i-1][j])`
+- Characters differ — add 1 for the operation, pick the cheapest neighbor
+- Diagonal = replace, left = delete, above = insert
+
+`return grid[n][m]`
+- Bottom-right corner holds the answer for the full strings
+
+---
+
+## Common Mistakes
+
+**1. Confusing which dimension is rows vs columns**
+```python
+grid = [[0] * (n + 1) for _ in range(m + 1)]  # rows = word1, cols = word2
+# vs
+grid = [[0] * (m + 1) for _ in range(n + 1)]  # rows = word2, cols = word1
+```
+Both work as long as you are consistent. The convention here is rows = `word2`
+(target), columns = `word1` (source). Mixing them up produces wrong answers.
+
+**2. Forgetting to fill the base cases**
+```python
+grid = [[0] * (m + 1) for _ in range(n + 1)]
+# Missing: grid[0][i] = i and grid[i][0] = i
+```
+Without the base cases, the first row and column stay 0, making every cell
+computed from them wrong.
+
+**3. Using `grid[i-1][j-1]` for the mismatch case instead of `+1`**
+```python
+grid[i][j] = min(grid[i-1][j-1], ...)  # WRONG — forgets to add 1 for the operation
+```
+Every mismatch costs exactly 1 operation. Always add 1 before taking the min.
+
+**4. Returning `grid[m][n]` when rows=word2, cols=word1**
+```python
+return grid[m][n]  # WRONG if grid has n+1 rows and m+1 columns
+```
+Return `grid[n][m]` when rows correspond to `word2` (length `n`) and columns
+correspond to `word1` (length `m`).
+
+---
+
+## Pattern Recognition
+
+> Use the **edit distance grid DP** pattern when you see:
+> - "Minimum operations to transform string A into string B"
+> - "Similarity score between two sequences"
+> - Any problem where the cost at position `(i, j)` depends on three neighbors
+
+**Similar problems:**
+- **Longest Common Subsequence** — same grid structure, maximize matches instead of minimizing edits
+- **One Edit Distance** — check if two strings are exactly 1 edit apart
+- **Delete Operation for Two Strings** — minimize deletions to make strings equal (variant of LCS)
+- **Minimum ASCII Delete Sum** — weighted edit distance using character ASCII values
+
+---
+
+## Real World Use Cases
+
+### 1. Spell-checking and autocorrect in text editors
+Autocorrect systems rank candidate corrections by their edit distance from the
+typed word. Words within distance 1 or 2 are suggested first. The grid DP runs
+once per keystroke against a dictionary of thousands of words — O(m × n) per
+candidate.
+
+### 2. DNA sequence alignment in bioinformatics
+Comparing two DNA sequences to find mutations uses edit distance as the core
+metric. Insertions, deletions, and substitutions in the genome correspond
+directly to the three operations. Tools like BLAST use variants of this DP
+to align sequences with billions of base pairs.
+
+### 3. Plagiarism and diff detection in version control
+Git's diff algorithm is based on the longest common subsequence (the complement
+of edit distance). Finding the minimum edits between two versions of a file
+produces the compact diff output shown in pull requests.
+
+---
+
+## Key Takeaways
+
+- `grid[i][j]` = minimum edits to convert the first `j` chars of `word1` into the first `i` chars of `word2`
+- Matching characters are free — copy the diagonal
+- Mismatching characters cost 1 — take the minimum of replace (diagonal), delete (left), insert (above)
+- The first row and column are the base cases: pure deletions and pure insertions
+- The bottom-right corner is always the answer
+
+---
+
         m, n = len(first_word), len(second_word)
 
         grid = [

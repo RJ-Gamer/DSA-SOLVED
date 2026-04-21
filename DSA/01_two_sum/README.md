@@ -319,6 +319,15 @@ hash map lookup for the complement value.
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (hash map) | O(n) | O(n) |
+
+---
+
 ## Key Takeaways
 
 - Trading **space for time** is often the right call: O(n) space to get O(n) time
@@ -326,3 +335,13 @@ hash map lookup for the complement value.
 - The **complement pattern** (`target - current`) is reusable across many problems
 - Always check the hash map **before** inserting the current element
 - `enumerate()` is cleaner than `range(len())` when you need both index and value
+
+---
+
+## Where to Practice
+
+| Platform | Problem | Difficulty |
+|---|---|---|
+| [LeetCode #1](https://leetcode.com/problems/two-sum/) | Two Sum | Easy |
+
+> This problem is part of the **Blind 75** and **NeetCode 150** interview prep lists.
