@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contribution Guide
+    url: https://github.com/RJ-Gamer/dsa_practice/blob/main/CONTRIBUTING.md
+    about: Read the contribution guide before opening a pull request.
+  - name: Support
+    url: https://github.com/RJ-Gamer/dsa_practice/blob/main/SUPPORT.md
+    about: Read the support guide for general questions.
