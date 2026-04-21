@@ -9,7 +9,7 @@
 [![Status](https://img.shields.io/badge/Status-Active%20Learning-22C55E?style=for-the-badge&logo=statuspage&logoColor=white)](https://github.com/RJ-Gamer/dsa)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-6366F1?style=for-the-badge&logo=github&logoColor=white)](http://makeapullrequest.com)
 
-[![Stars](https://img.shields.io/github/stars/RJ-Gamer/dsa?style=social)](https://github.com/RJ-Gamer/dsa)
+[![Stars](https://img.shields.io/github/stars/RJ-Gamer/dsa?style=social)](https://github.com/RJ-Gamer/DSA-SOLVED)
 [![Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ff69b4?logo=github&style=social)](https://github.com/sponsors/RJ-Gamer)
 
 **Tags:** `dsa` `algorithms` `python` `leetcode` `interview-prep` `problem-solving`
