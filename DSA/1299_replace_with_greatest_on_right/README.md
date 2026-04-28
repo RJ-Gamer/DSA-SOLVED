@@ -135,21 +135,21 @@ i = 3 (val: 4)
 def replaceElements(arr: List[int]) -> List[int]:
     # 1. Initialize the 'right-side max' for the very last element
     greatest_so_far = -1
-    
+
     # 2. Iterate backwards from the end of the array to the start
     for i in range(len(arr) - 1, -1, -1):
         # 3. Keep track of current value before we overwrite it
         current_val = arr[i]
-        
+
         # 4. Replace current element with the max of elements to its right
         arr[i] = greatest_so_far
-        
+
         # 5. Update the max for the NEXT element (the one to our left)
-        # It will be the max of the current element we just processed 
+        # It will be the max of the current element we just processed
         # and the max of everything to its right.
         if current_val > greatest_so_far:
             greatest_so_far = current_val
-            
+
     return arr
 ```
 

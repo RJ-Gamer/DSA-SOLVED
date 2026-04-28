@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![LeetCode](https://img.shields.io/badge/LeetCode-Problems-FFA116?style=for-the-badge&logo=leetcode&logoColor=white)](https://leetcode.com/)
-[![Problems](https://img.shields.io/badge/Problems_Solved-14-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
+[![Problems](https://img.shields.io/badge/Problems_Solved-15-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
 [![Docs](https://img.shields.io/badge/Docs-Detailed-F97316?style=for-the-badge&logo=readthedocs&logoColor=white)](DSA/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-F7DF1E?style=for-the-badge&logo=opensourceinitiative&logoColor=black)](https://opensource.org/licenses/MIT)
@@ -57,7 +57,8 @@ dsa_practice/
 |   |-- 70_climbing_stairs/
 |   |-- 72_min_distance/
 |   |-- 746_min_cost_climbing_stairs/
-|   `-- 1143_longest_common_subsequence/
+|   |-- 1143_longest_common_subsequence/
+|   `-- 1299_replace_with_greatest_on_right/
 |-- .editorconfig
 |-- .gitattributes
 |-- .gitignore
@@ -108,6 +109,7 @@ This keeps the repo useful both as a practice log and as a study resource.
 | 72 | Edit Distance | Medium | String, Dynamic Programming | [Notes](DSA/72_min_distance/) |
 | 746 | Min Cost Climbing Stairs | Easy | Dynamic Programming | [Notes](DSA/746_min_cost_climbing_stairs/) |
 | 1143 | Longest Common Subsequence | Medium | String, Dynamic Programming | [Notes](DSA/1143_longest_common_subsequence/) |
+| 1299 | Replace Elements with Greatest Element on Right Side | Easy | Array | [Notes](DSA/1299_replace_with_greatest_on_right/) |
 
 ---
 
