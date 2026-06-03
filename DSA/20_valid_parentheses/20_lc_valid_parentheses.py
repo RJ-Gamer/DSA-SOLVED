@@ -12,16 +12,16 @@ def isValid(s: str) -> bool:
     """
     Check if a string containing parentheses, brackets, and braces is valid.
     Valid means every opening bracket has a corresponding closing bracket in the correct order.
-    
+
     Args:
         s: A string containing parentheses, brackets, and braces
-        
+
     Returns:
         True if the string is valid, False otherwise
     """
     stack = []
-    mapping = {')': '(', ']': '[', '}': '{'}
-    
+    mapping = {")": "(", "]": "[", "}": "{"}
+
     for char in s:
         if char in mapping:
             # Closing bracket
@@ -31,7 +31,7 @@ def isValid(s: str) -> bool:
         else:
             # Opening bracket
             stack.append(char)
-    
+
     return len(stack) == 0
 
 
@@ -39,23 +39,23 @@ def isValid(s: str) -> bool:
 if __name__ == "__main__":
     # Test 1: Valid simple parentheses
     assert isValid("()") == True
-    
+
     # Test 2: Valid nested parentheses
     assert isValid("()[]{}") == True
-    
+
     # Test 3: Invalid - unmatched opening
     assert isValid("(") == False
-    
+
     # Test 4: Invalid - wrong order
     assert isValid("(]") == False
-    
+
     # Test 5: Invalid - extra closing
     assert isValid("())") == False
-    
+
     # Test 6: Complex valid case
     assert isValid("({[]})") == True
-    
+
     # Test 7: Empty string
     assert isValid("") == True
-    
+
     print("All tests passed!")
