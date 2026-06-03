@@ -3,7 +3,7 @@
 
 def is_valid(s: str) -> bool:
     stack = []
-    mapping = {')': '(', ']': '[', '}': '{'}
+    mapping = {")": "(", "]": "[", "}": "{"}
     for ch in s:
         if ch in mapping:
             if not stack or stack[-1] != mapping[ch]:

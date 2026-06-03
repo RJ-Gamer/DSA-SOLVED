@@ -9,6 +9,7 @@ Space Complexity: O(h) where h is height / O(n) worst case
 
 # LeetCode Problem #104: Maximum Depth of Binary Tree
 
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -26,6 +27,7 @@ def max_depth_bfs(root: TreeNode) -> int:
     if not root:
         return 0
     from collections import deque
+
     q = deque([(root, 1)])
     depth = 0
     while q:
@@ -40,4 +42,3 @@ def max_depth_bfs(root: TreeNode) -> int:
 
 root = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
 print(max_depth(root))
-

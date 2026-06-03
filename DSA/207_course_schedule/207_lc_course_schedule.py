@@ -1,5 +1,6 @@
 def can_finish_dfs(numCourses, prerequisites):
     from collections import defaultdict
+
     graph = defaultdict(list)
     for a, b in prerequisites:
         graph[a].append(b)
@@ -25,6 +26,7 @@ def can_finish_dfs(numCourses, prerequisites):
 
 def can_finish_bfs(numCourses, prerequisites):
     from collections import defaultdict, deque
+
     graph = defaultdict(list)
     indeg = [0] * numCourses
     for a, b in prerequisites:

@@ -40,4 +40,12 @@ def build_list(arr):
 
 head = build_list([1, 2, 3, 4, 5])
 rev = reverse_list_iter(head)
-print([rev.val, rev.next.val, rev.next.next.val, rev.next.next.next.val, rev.next.next.next.next.val])
+print(
+    [
+        rev.val,
+        rev.next.val,
+        rev.next.next.val,
+        rev.next.next.next.val,
+        rev.next.next.next.next.val,
+    ]
+)
