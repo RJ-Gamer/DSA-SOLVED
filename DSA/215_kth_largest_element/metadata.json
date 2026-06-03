@@ -1,0 +1,12 @@
+{
+  "problem_number": 215,
+  "problem_name": "Kth Largest Element in an Array",
+  "difficulty": "Medium",
+  "topics": ["Heap", "Quick Select", "Sorting"],
+  "leetcode_url": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+  "solution_file": "215_lc_kth_largest_element.py",
+  "time_complexity": "O(n log k) heap",
+  "space_complexity": "O(k)",
+  "blind_75": false,
+  "neetcode_150": true
+}

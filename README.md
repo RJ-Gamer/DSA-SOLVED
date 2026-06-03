@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![LeetCode](https://img.shields.io/badge/LeetCode-Problems-FFA116?style=for-the-badge&logo=leetcode&logoColor=white)](https://leetcode.com/)
-[![Problems](https://img.shields.io/badge/Problems_Solved-15-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
+[![Problems](https://img.shields.io/badge/Problems_Solved-26-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
 [![Docs](https://img.shields.io/badge/Docs-Detailed-F97316?style=for-the-badge&logo=readthedocs&logoColor=white)](DSA/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-F7DF1E?style=for-the-badge&logo=opensourceinitiative&logoColor=black)](https://opensource.org/licenses/MIT)
@@ -45,17 +45,28 @@ dsa_practice/
 |   `-- PULL_REQUEST_TEMPLATE.md
 |-- DSA/
 |   |-- 01_two_sum/
+|   |-- 20_valid_parentheses/
+|   |-- 33_search_rotated_sorted_array/
+|   |-- 46_permutations/
 |   |-- 53_maximum_subarray/
+|   |-- 62_unique_paths/
+|   |-- 63_unique_paths_II/
+|   |-- 70_climbing_stairs/
+|   |-- 72_min_distance/
+|   |-- 104_maximum_depth_binary_tree/
 |   |-- 121_best_time_to_buy_and_sell/
 |   |-- 125_valid_palindrome/
+|   |-- 136_single_number/
+|   |-- 200_number_of_islands/
+|   |-- 206_reverse_linked_list/
+|   |-- 207_course_schedule/
+|   |-- 208_implement_trie/
+|   |-- 215_kth_largest_element/
 |   |-- 217_contains_duplicate/
 |   |-- 242_valid_anagram/
 |   |-- 516_longest_palindrome_subsequence/
-|   |-- 62_unique_paths/
-|   |-- 63_unique_paths_II/
+|   |-- 547_number_of_provinces/
 |   |-- 647_palindrome_substrings/
-|   |-- 70_climbing_stairs/
-|   |-- 72_min_distance/
 |   |-- 746_min_cost_climbing_stairs/
 |   |-- 1143_longest_common_subsequence/
 |   `-- 1299_replace_with_greatest_on_right/
@@ -96,17 +107,28 @@ This keeps the repo useful both as a practice log and as a study resource.
 | # | Problem | Difficulty | Topics | Solution |
 |---|---------|------------|--------|----------|
 | 01 | Two Sum | Easy | Array, Hash Map | [Notes](DSA/01_two_sum/) |
+| 20 | Valid Parentheses | Easy | Stack, String | [Notes](DSA/20_valid_parentheses/) |
+| 33 | Search in Rotated Sorted Array | Medium | Binary Search, Array | [Notes](DSA/33_search_rotated_sorted_array/) |
+| 46 | Permutations | Medium | Backtracking, Array | [Notes](DSA/46_permutations/) |
 | 53 | Maximum Subarray | Medium | Array, Dynamic Programming | [Notes](DSA/53_maximum_subarray/) |
-| 121 | Best Time to Buy and Sell Stock | Easy | Array, Two Pointers, Greedy | [Notes](DSA/121_best_time_to_buy_and_sell/) |
-| 125 | Valid Palindrome | Easy | String, Two Pointers | [Notes](DSA/125_valid_palindrome/) |
-| 217 | Contains Duplicate | Easy | Array, Hash Map | [Notes](DSA/217_contains_duplicate/) |
-| 242 | Valid Anagram | Easy | String, Hash Map | [Notes](DSA/242_valid_anagram/) |
-| 516 | Longest Palindromic Subsequence | Medium | String, Dynamic Programming | [Notes](DSA/516_longest_palindrome_subsequence/) |
 | 62 | Unique Paths | Medium | Dynamic Programming, Math | [Notes](DSA/62_unique_paths/) |
 | 63 | Unique Paths II | Medium | Dynamic Programming | [Notes](DSA/63_unique_paths_II/) |
 | 70 | Climbing Stairs | Easy | Dynamic Programming | [Notes](DSA/70_climbing_stairs/) |
-| 647 | Palindromic Substrings | Medium | String, Dynamic Programming | [Notes](DSA/647_palindrome_substrings/) |
 | 72 | Edit Distance | Medium | String, Dynamic Programming | [Notes](DSA/72_min_distance/) |
+| 104 | Maximum Depth of Binary Tree | Easy | Binary Tree, DFS, BFS, Recursion | [Notes](DSA/104_maximum_depth_binary_tree/) |
+| 121 | Best Time to Buy and Sell Stock | Easy | Array, Two Pointers, Greedy | [Notes](DSA/121_best_time_to_buy_and_sell/) |
+| 125 | Valid Palindrome | Easy | String, Two Pointers | [Notes](DSA/125_valid_palindrome/) |
+| 136 | Single Number | Easy | Bit Manipulation, Array | [Notes](DSA/136_single_number/) |
+| 200 | Number of Islands | Medium | Graph, DFS, BFS, Matrix | [Notes](DSA/200_number_of_islands/) |
+| 206 | Reverse Linked List | Easy | Linked List, Recursion | [Notes](DSA/206_reverse_linked_list/) |
+| 207 | Course Schedule | Medium | Graph, Topological Sort, DFS, BFS | [Notes](DSA/207_course_schedule/) |
+| 208 | Implement Trie | Medium | Trie, Design, Hash Map | [Notes](DSA/208_implement_trie/) |
+| 215 | Kth Largest Element in an Array | Medium | Heap, Quick Select, Sorting | [Notes](DSA/215_kth_largest_element/) |
+| 217 | Contains Duplicate | Easy | Array, Hash Map | [Notes](DSA/217_contains_duplicate/) |
+| 242 | Valid Anagram | Easy | String, Hash Map | [Notes](DSA/242_valid_anagram/) |
+| 516 | Longest Palindromic Subsequence | Medium | String, Dynamic Programming | [Notes](DSA/516_longest_palindrome_subsequence/) |
+| 547 | Number of Provinces | Medium | Union-Find, Graph, DFS | [Notes](DSA/547_number_of_provinces/) |
+| 647 | Palindromic Substrings | Medium | String, Dynamic Programming | [Notes](DSA/647_palindrome_substrings/) |
 | 746 | Min Cost Climbing Stairs | Easy | Dynamic Programming | [Notes](DSA/746_min_cost_climbing_stairs/) |
 | 1143 | Longest Common Subsequence | Medium | String, Dynamic Programming | [Notes](DSA/1143_longest_common_subsequence/) |
 | 1299 | Replace Elements with Greatest Element on Right Side | Easy | Array | [Notes](DSA/1299_replace_with_greatest_on_right/) |

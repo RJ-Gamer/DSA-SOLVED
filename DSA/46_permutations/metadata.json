@@ -1,0 +1,12 @@
+{
+  "problem_number": 46,
+  "problem_name": "Permutations",
+  "difficulty": "Medium",
+  "topics": ["Backtracking", "Array"],
+  "leetcode_url": "https://leetcode.com/problems/permutations/",
+  "solution_file": "46_lc_permutations.py",
+  "time_complexity": "O(n! * n)",
+  "space_complexity": "O(n!)",
+  "blind_75": false,
+  "neetcode_150": true
+}

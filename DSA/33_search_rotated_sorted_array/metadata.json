@@ -1,0 +1,12 @@
+{
+  "problem_number": 33,
+  "problem_name": "Search in Rotated Sorted Array",
+  "difficulty": "Medium",
+  "topics": ["Binary Search", "Array"],
+  "leetcode_url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+  "solution_file": "33_lc_search_rotated_sorted_array.py",
+  "time_complexity": "O(log n)",
+  "space_complexity": "O(1)",
+  "blind_75": true,
+  "neetcode_150": true
+}

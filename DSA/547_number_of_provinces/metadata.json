@@ -1,0 +1,12 @@
+{
+  "problem_number": 547,
+  "problem_name": "Number of Provinces",
+  "difficulty": "Medium",
+  "topics": ["Union-Find", "Graph", "DFS"],
+  "leetcode_url": "https://leetcode.com/problems/number-of-provinces/",
+  "solution_file": "547_lc_number_of_provinces.py",
+  "time_complexity": "O(n² * α(n))",
+  "space_complexity": "O(n)",
+  "blind_75": false,
+  "neetcode_150": false
+}

@@ -1,0 +1,12 @@
+{
+  "problem_number": 206,
+  "problem_name": "Reverse Linked List",
+  "difficulty": "Easy",
+  "topics": ["Linked List", "Recursion"],
+  "leetcode_url": "https://leetcode.com/problems/reverse-linked-list/",
+  "solution_file": "206_lc_reverse_linked_list.py",
+  "time_complexity": "O(n)",
+  "space_complexity": "O(1) iterative / O(n) recursive",
+  "blind_75": true,
+  "neetcode_150": true
+}

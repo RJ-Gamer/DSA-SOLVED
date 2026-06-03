@@ -1,0 +1,12 @@
+{
+  "problem_number": 208,
+  "problem_name": "Implement Trie (Prefix Tree)",
+  "difficulty": "Medium",
+  "topics": ["Trie", "Design", "Hash Map"],
+  "leetcode_url": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+  "solution_file": "208_lc_implement_trie.py",
+  "time_complexity": "O(m) for each operation",
+  "space_complexity": "O(ALPHABET_SIZE * N * M)",
+  "blind_75": false,
+  "neetcode_150": true
+}
