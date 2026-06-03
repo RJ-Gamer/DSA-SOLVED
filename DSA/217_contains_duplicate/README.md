@@ -258,6 +258,16 @@ def contains_duplicates_hash_map(nums: list[int]) -> bool:
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (hash set, early exit) | O(n) | O(n) |
+| One-liner (length comparison) | O(n) | O(n) |
+
+---
+
 ## Common Mistakes
 
 **1. Using a list instead of a set**
@@ -291,10 +301,17 @@ In interviews, mention this trade-off — it shows depth of understanding.
 
 ## Pattern Recognition
 
-> Use the **"have I seen this before?"** hash set pattern when you see:
-> - "Does any element appear more than once?"
-> - "Find the first repeated element"
-> - "Check for membership in O(1)"
+### How to Recognize
+- Problem asks whether any element appears more than once
+- Need O(1) membership checks — "have I seen this value before?"
+- Early exit on first duplicate is important for large inputs
+
+### How to Identify
+- Can a hash set catch the first repeat in a single pass?
+- Is storing elements in a set and checking membership the only operation needed?
+
+### How to Remember
+> **Mental model:** The bouncer with a notepad — seen before = duplicate; write it down and continue
 
 **Similar problems:**
 - **Two Sum** — same hash-lookup pattern, but stores index alongside value (uses dict not set)
@@ -324,16 +341,6 @@ When a user registers, the system checks whether their chosen username or email
 already exists in the database. Database systems implement this with unique
 indexes (hash-based internally), which perform the same O(1) duplicate detection
 at storage scale rather than in-memory scale.
-
----
-
-## Quick Summary
-
-| Approach | Time | Space |
-|---|---|---|
-| Brute Force (nested loops) | O(n²) | O(1) |
-| Optimal (hash set, early exit) | O(n) | O(n) |
-| One-liner (length comparison) | O(n) | O(n) |
 
 ---
 

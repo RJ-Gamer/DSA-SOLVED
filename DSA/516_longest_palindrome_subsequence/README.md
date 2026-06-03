@@ -634,10 +634,17 @@ contiguous slices only. They use different recurrences.
 
 ## Pattern Recognition
 
-> Use the **interval DP** pattern when you see:
-> - "Longest palindromic subsequence of a string"
-> - A single-string problem where the subproblem is defined by a start and end index
-> - The answer for `[i, j]` depends on strictly smaller intervals inside it
+### How to Recognize
+- Problem involves a single string where the subproblem is defined by a start and end index
+- The answer for range `[i, j]` depends on strictly smaller ranges inside it
+- Keywords: "longest palindromic subsequence", "interval DP", "expand from inside"
+
+### How to Identify
+- Does `LPS(i, j)` reduce to `LPS(i+1, j-1) + 2` on a character match, or `max(LPS(i+1,j), LPS(i,j-1))` on mismatch?
+- Must you fill shorter intervals before longer ones?
+
+### How to Remember
+> **Mental model:** Fill shorter intervals first — longer intervals are built on top of the inner ones
 
 **Similar problems:**
 - **Palindromic Substrings** — same interval structure, count palindromes instead of finding the longest

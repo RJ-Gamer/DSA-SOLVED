@@ -1,8 +1,8 @@
 # 104. Maximum Depth of Binary Tree
 
-**LeetCode:** [https://leetcode.com/problems/maximum-depth-of-binary-tree/](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
-**Difficulty:** Easy
-**Topics:** [Binary Tree] [DFS] [BFS] [Recursion]
+**LeetCode:** [Problem #104](https://leetcode.com/problems/maximum-depth-of-binary-tree/)  
+**Difficulty:** Easy  
+**Topics:** `Binary Tree` `DFS` `BFS` `Recursion`
 
 ---
 
@@ -172,7 +172,17 @@ return 1 + max(maxDepth(root.left), maxDepth(root.right))
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Find maximum or minimum values in trees, or traverse all nodes calculating aggregate values (sum, product, height, etc.).
+### How to Recognize
+- Problem asks for an aggregate value across a tree (depth, height, sum, count)
+- The answer at each node depends on the answers from its children
+- Tree has a recursive structure that mirrors the recursive solution
+
+### How to Identify
+- Does `answer(node) = 1 + operation(answer(left), answer(right))` hold?
+- Is the base case simply: an empty/null node returns 0?
+
+### How to Remember
+> **Mental model:** Each node contributes 1 + the best of its subtrees
 
 **Similar problems:**
 - LeetCode 111: Minimum Depth of Binary Tree

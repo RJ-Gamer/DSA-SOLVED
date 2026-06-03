@@ -1,12 +1,4 @@
 {
-  "problem_number": 136,
-  "problem_name": "Single Number",
   "difficulty": "Easy",
-  "topics": ["Bit Manipulation", "Array"],
-  "leetcode_url": "https://leetcode.com/problems/single-number/",
-  "solution_file": "136_lc_single_number.py",
-  "time_complexity": "O(n)",
-  "space_complexity": "O(1)",
-  "blind_75": true,
-  "neetcode_150": true
+  "topics": ["Bit Manipulation", "Array"]
 }

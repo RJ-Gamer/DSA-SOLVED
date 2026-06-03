@@ -246,7 +246,17 @@ def find(x):
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Connected components, provinces, clusters, connected groups, or any problem asking "how many groups of connected elements?"
+### How to Recognize
+- Problem asks how many groups of connected elements exist
+- Input is an adjacency matrix (not a grid) representing pairwise connections
+- Words like "provinces", "clusters", "communities", or "connected components"
+
+### How to Identify
+- Can each DFS or union operation mark an entire connected component as one group?
+- For Union-Find: does counting distinct roots give the number of provinces?
+
+### How to Remember
+> **Mental model:** Union-Find: everyone merges under one root; count distinct roots = count provinces
 
 **Similar problems:**
 - LeetCode 200: Number of Islands

@@ -290,6 +290,16 @@ def valid_anagram_linear(s: str, t: str) -> bool:
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (sort) | O(n log n) | O(n) |
+| Optimal (two hash maps) | O(n) | O(1) |
+| Pythonic (Counter) | O(n) | O(1) |
+
+---
+
 ## Common Mistakes
 
 **1. Skipping the length check**
@@ -340,10 +350,17 @@ compare at the end.
 
 ## Pattern Recognition
 
-> Use the **frequency map** pattern when you see:
-> - "Are these two strings rearrangements of each other?"
-> - "Do these two collections contain the same elements with the same counts?"
-> - "Check if one string can be formed from the characters of another"
+### How to Recognize
+- Problem asks whether two strings are rearrangements of each other
+- Order does not matter — only character counts do
+- Both strings must use the same characters the same number of times
+
+### How to Identify
+- Can you build two frequency maps in O(n) and compare them in O(1)?
+- Does a length-check early exit eliminate many inputs immediately?
+
+### How to Remember
+> **Mental model:** Two bags of Scrabble tiles — count each letter in both bags; tallies must match exactly
 
 **Similar problems:**
 - **Group Anagrams** — same frequency map idea, but group multiple strings that
@@ -387,16 +404,6 @@ same fields in different orders. Normalizing log entries by treating them as
 anagrams of a canonical form — comparing field frequency maps rather than raw
 strings — allows deduplication before writing to storage, reducing log volume
 significantly.
-
----
-
-## Quick Summary
-
-| Approach | Time | Space |
-|---|---|---|
-| Brute Force (sort) | O(n log n) | O(n) |
-| Optimal (two hash maps) | O(n) | O(1) |
-| Pythonic (Counter) | O(n) | O(1) |
 
 ---
 

@@ -211,7 +211,7 @@ def is_palindrome(s: str) -> bool:
 
 ---
 
-## Solution Breakdown - Step by Step
+## Solution Breakdown — Step by Step
 
 ```python
 def is_palindrome(s: str) -> bool:
@@ -279,6 +279,15 @@ def is_palindrome(s: str) -> bool:
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (clean + reverse) | O(n) | O(n) |
+| Optimal (two pointers) | O(n) | O(1) |
+
+---
+
 ## Common Mistakes
 
 - Forgetting to ignore non-alphanumeric characters. Comparing the raw string
@@ -293,8 +302,17 @@ def is_palindrome(s: str) -> bool:
 
 ## Pattern Recognition
 
-> Use this pattern when you see: "compare from both ends", "ignore irrelevant
-> characters while checking symmetry", or "validate a string after normalization"
+### How to Recognize
+- Problem asks whether a string reads the same forward and backward after normalization
+- Certain characters (spaces, punctuation) must be ignored
+- Comparison happens from both ends toward the center
+
+### How to Identify
+- Can you use two pointers (left and right) and skip invalid characters in place?
+- Does the comparison work character-by-character until the pointers meet?
+
+### How to Remember
+> **Mental model:** Two referees walking inward — both must agree on every character they check
 
 **Similar problems:**
 - **Valid Palindrome II** - same two-pointer idea, but allows deleting one
@@ -322,15 +340,6 @@ Production systems often compare identifiers that may arrive with separators,
 mixed case, or formatting artifacts from external sources. A two-pointer
 normalization approach helps validate equivalence without allocating large
 intermediate strings.
-
----
-
-## Quick Summary
-
-| Approach | Time | Space |
-|---|---|---|
-| Brute Force (clean + reverse) | O(n) | O(n) |
-| Optimal (two pointers) | O(n) | O(1) |
 
 ---
 

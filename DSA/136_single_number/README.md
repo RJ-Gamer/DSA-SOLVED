@@ -1,8 +1,8 @@
 # 136. Single Number
 
-**LeetCode:** [https://leetcode.com/problems/single-number/](https://leetcode.com/problems/single-number/)
-**Difficulty:** Easy
-**Topics:** [Bit Manipulation] [Array]
+**LeetCode:** [Problem #136](https://leetcode.com/problems/single-number/)  
+**Difficulty:** Easy  
+**Topics:** `Bit Manipulation` `Array`
 
 ---
 
@@ -190,7 +190,17 @@ for num in nums:
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Find single element with constraints, XOR-based problems, or when you need O(1) space for array element problems.
+### How to Recognize
+- Every element appears exactly twice except one (or a similar pairing constraint)
+- O(1) space is required — no hash map or extra array allowed
+- The problem exploits a mathematical self-cancellation property
+
+### How to Identify
+- Does XOR's `a ^ a = 0` and `a ^ 0 = a` mean all pairs cancel out, leaving only the singleton?
+- Can you fold the entire array into a single value by XOR-ing all elements?
+
+### How to Remember
+> **Mental model:** XOR is a self-destruct button for pairs — flip all, pairs vanish, singleton survives
 
 **Similar problems:**
 - LeetCode 260: Single Number III (two single numbers)

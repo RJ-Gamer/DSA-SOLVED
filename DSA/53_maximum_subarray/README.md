@@ -240,6 +240,15 @@ def max_sub_array_optimal(nums: list[int]) -> int:
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (Kadane's algorithm) | O(n) | O(1) |
+
+---
+
 ## Common Mistakes
 
 **1. Initializing `max_sum` to 0 instead of `-∞`**
@@ -276,10 +285,17 @@ indices adds complexity without benefit for this problem — only do it if asked
 
 ## Pattern Recognition
 
-> Use **Kadane's algorithm** when you see:
-> - "Find the maximum/minimum sum subarray"
-> - "Find the contiguous subarray with property X"
-> - Local decisions (extend vs restart) that build a global optimum
+### How to Recognize
+- Problem asks for the maximum or minimum sum of a contiguous subarray
+- Array contains negative numbers (otherwise the whole array is always optimal)
+- A local decision at each position (extend or restart) builds the global optimum
+
+### How to Identify
+- Can you reduce the decision at each index to: "is this element alone better than extending the previous subarray?"
+- Does the recurrence `current = max(num, current + num)` capture the problem?
+
+### How to Remember
+> **Mental model:** Kadane's = greed at each step: keep the streak or start fresh
 
 **Similar problems:**
 - **Maximum Product Subarray** — same idea, but tracking both max and min (negatives flip sign)
@@ -310,15 +326,6 @@ A trading system processing a stream of per-minute PnL (profit and loss) deltas
 uses the maximum subarray pattern to identify the most profitable contiguous
 trading window in historical data. One O(n) pass over years of tick data is far
 more practical than O(n²) when n is in the tens of millions.
-
----
-
-## Quick Summary
-
-| Approach | Time | Space |
-|---|---|---|
-| Brute Force (nested loops) | O(n²) | O(1) |
-| Optimal (Kadane's algorithm) | O(n) | O(1) |
 
 ---
 

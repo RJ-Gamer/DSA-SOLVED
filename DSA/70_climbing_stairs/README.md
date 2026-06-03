@@ -294,10 +294,17 @@ After the swap, `t2` holds the current step's answer. Always return `t2`.
 
 ## Pattern Recognition
 
-> Use the **Fibonacci / two-variable DP** pattern when you see:
-> - "How many ways to reach position n with steps of size 1 or 2?"
-> - A recurrence where `f(n)` depends only on `f(n-1)` and `f(n-2)`
-> - Any problem reducible to counting paths with fixed step sizes
+### How to Recognize
+- Problem asks "how many ways to reach position n" with step sizes 1 and 2
+- The recurrence depends on exactly the previous two values
+- Counts paths rather than optimizing cost
+
+### How to Identify
+- Is the recurrence `f(n) = f(n-1) + f(n-2)` with small base cases?
+- Can you replace the full dp array with just two rolling variables?
+
+### How to Remember
+> **Mental model:** Fibonacci in disguise — you're always one or two steps behind the answer
 
 **Similar problems:**
 - **Min Cost Climbing Stairs** — same recurrence, but minimize cost instead of counting paths

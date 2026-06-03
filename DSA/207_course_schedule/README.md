@@ -1,8 +1,8 @@
 # 207. Course Schedule
 
-**LeetCode:** [https://leetcode.com/problems/course-schedule/](https://leetcode.com/problems/course-schedule/)
-**Difficulty:** Medium
-**Topics:** [Graph] [Topological Sort] [DFS] [BFS]
+**LeetCode:** [Problem #207](https://leetcode.com/problems/course-schedule/)  
+**Difficulty:** Medium  
+**Topics:** `Graph` `Topological Sort` `DFS` `BFS`
 
 ---
 
@@ -225,7 +225,17 @@ return count == numCourses  # All courses must be processed
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Course prerequisites, task scheduling with dependencies, cycle detection in graphs, or topological sorting problems.
+### How to Recognize
+- Problem involves prerequisites, dependencies, or "must do A before B" constraints
+- Question reduces to: "Is it possible to complete all tasks?" (cycle detection)
+- Graph where nodes are tasks and edges represent dependencies
+
+### How to Identify
+- Can you model it as a directed graph and check for cycles?
+- Does DFS with three states (unvisited / visiting / done) detect cycles?
+
+### How to Remember
+> **Mental model:** Three states: unvisited = white, visiting = gray, done = black — gray→gray means cycle
 
 **Similar problems:**
 - LeetCode 210: Course Schedule II (order courses, not just feasibility)

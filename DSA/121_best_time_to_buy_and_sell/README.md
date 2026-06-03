@@ -266,6 +266,15 @@ def max_profit_linear(prices: list[int]) -> int:
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (running minimum) | O(n) | O(1) |
+
+---
+
 ## Common Mistakes
 
 **1. Not initializing `min_price` to infinity (or `prices[0]`)**
@@ -307,10 +316,17 @@ but `>` is the standard convention.
 
 ## Pattern Recognition
 
-> Use the **running minimum / running maximum** pattern when you see:
-> - "Find maximum difference where larger element comes after smaller"
-> - "Single-pass optimization with a tracked extreme value"
-> - Greedy problems where the best choice at each step depends on the best seen so far
+### How to Recognize
+- Problem asks for the maximum difference where the larger value must come after the smaller
+- A single pass with two tracked variables (min seen so far + best profit) is sufficient
+- Temporal ordering constraint: you must "buy" before you can "sell"
+
+### How to Identify
+- Can you maintain a running minimum and compute `current - min_so_far` at each step?
+- Does the naive approach (find global min and max) fail because of ordering?
+
+### How to Remember
+> **Mental model:** Track the floor — today's profit = today's price minus the cheapest day you've seen
 
 **Similar problems:**
 - **Maximum Subarray** — equivalent: convert to daily differences, then find max subarray sum
@@ -341,15 +357,6 @@ An analytics pipeline processes per-second engagement scores for a user session.
 Finding the "peak engagement window" — the period with the maximum improvement
 from a local low to a later local high — uses the running minimum pattern.
 Product teams use this to identify when users discover value in a feature.
-
----
-
-## Quick Summary
-
-| Approach | Time | Space |
-|---|---|---|
-| Brute Force (nested loops) | O(n²) | O(1) |
-| Optimal (running minimum) | O(n) | O(1) |
 
 ---
 

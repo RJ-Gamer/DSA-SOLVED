@@ -418,10 +418,17 @@ a substring. This problem counts substrings only.
 
 ## Pattern Recognition
 
-> Use the **expand-around-center** pattern when you see:
-> - "Count palindromic substrings"
-> - "Find the longest palindromic substring"
-> - Any problem requiring palindrome detection on contiguous slices
+### How to Recognize
+- Problem asks to count or find palindromic substrings (contiguous, not subsequences)
+- Every possible center (character or gap) must be considered
+- Expanding outward from each center is more space-efficient than a full DP table
+
+### How to Identify
+- For each center, can you expand `left` and `right` while `s[left] == s[right]`?
+- Do you need two expansions per center: one for odd-length, one for even-length palindromes?
+
+### How to Remember
+> **Mental model:** Every palindrome has a center — expand from all 2n − 1 possible centers
 
 **Similar problems:**
 - **Longest Palindromic Substring** — same expand-around-center, track the longest instead of counting

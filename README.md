@@ -176,15 +176,13 @@ DSA/242_valid_anagram/
 
 ## Topics Covered
 
-- Array
-- String
-- Hash Map
-- Two Pointers
-- Greedy
-- Dynamic Programming
-- Math
-
-More topics will be added as the problem set grows.
+- Array · String · Hash Map · Two Pointers
+- Stack · Queue · Linked List
+- Binary Tree · Graph · Matrix
+- Binary Search · Backtracking · Recursion
+- Dynamic Programming · Greedy
+- Bit Manipulation · Trie · Union-Find
+- Sorting · Math · Sliding Window
 
 ---
 

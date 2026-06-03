@@ -276,10 +276,17 @@ Always guard with `j > 0` to avoid wrapping around to the last element.
 
 ## Pattern Recognition
 
-> Use the **obstacle-aware grid DP** pattern when you see:
-> - "Count paths in a grid where some cells are blocked"
-> - "Grid traversal with right/down movement and walls"
-> - Any Unique Paths variant with constraints on which cells are reachable
+### How to Recognize
+- Count paths in a grid from top-left to bottom-right with some cells blocked
+- Movement restricted to right and down only
+- Obstacle cells reduce path counts — zero paths through any blocked cell
+
+### How to Identify
+- Does an obstacle at `(i, j)` simply mean `dp[i][j] = 0`?
+- Is the recurrence the same as Unique Paths but with an extra `if obstacle: skip` check?
+
+### How to Remember
+> **Mental model:** Same city map as Unique Paths, but some roads are closed — zero in, zero out
 
 **Similar problems:**
 - **Unique Paths** — same grid DP without obstacles

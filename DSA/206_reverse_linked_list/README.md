@@ -1,8 +1,8 @@
 # 206. Reverse Linked List
 
-**LeetCode:** [https://leetcode.com/problems/reverse-linked-list/](https://leetcode.com/problems/reverse-linked-list/)
-**Difficulty:** Easy
-**Topics:** [Linked List] [Recursion]
+**LeetCode:** [Problem #206](https://leetcode.com/problems/reverse-linked-list/)  
+**Difficulty:** Easy  
+**Topics:** `Linked List` `Recursion`
 
 ---
 
@@ -179,7 +179,17 @@ return new_head  # Return the actual new head from recursion
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Reverse a linked list, or any problem requiring pointer manipulation and traversal of linked list data structures.
+### How to Recognize
+- Problem requires reversing a linked list or redirecting its pointers
+- In-place pointer manipulation is expected (O(1) extra space)
+- Need to traverse the list while modifying direction
+
+### How to Identify
+- Do you need three pointers (`prev`, `cur`, `next`) to safely flip each link without losing the chain?
+- Does the recursive solution fix pointers on the way back up the call stack?
+
+### How to Remember
+> **Mental model:** Save next, flip arrow, slide forward — never lose the thread
 
 **Similar problems:**
 - LeetCode 92: Reverse Linked List II (reverse only part)

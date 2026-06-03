@@ -235,10 +235,17 @@ runs `m-1` times. Swapping them gives the right answer only when `m == n`.
 
 ## Pattern Recognition
 
-> Use the **2D grid DP** pattern when you see:
-> - "Count paths in a grid from top-left to bottom-right"
-> - "Each cell's value depends on the cell above and the cell to the left"
-> - Movement restricted to right and down only
+### How to Recognize
+- Problem involves counting paths in a grid from top-left to bottom-right
+- Movement is restricted to two directions only (right and down)
+- Each cell's answer depends only on the cell above and the cell to the left
+
+### How to Identify
+- Does `paths(i, j) = paths(i-1, j) + paths(i, j-1)` capture the recurrence?
+- Can you reduce space from O(m × n) to O(n) by reusing a single row?
+
+### How to Remember
+> **Mental model:** Each intersection = roads from above + roads from the left
 
 **Similar problems:**
 - **Unique Paths II** — same grid DP with obstacles blocking certain cells

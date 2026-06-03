@@ -257,7 +257,17 @@ def insert(self, word):
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Autocomplete, spell checker, IP routing, prefix matching, or any problem requiring efficient prefix queries.
+### How to Recognize
+- Problem involves fast prefix matching, autocomplete, or word existence checks
+- Many strings share common prefixes (phone book, dictionary, file paths)
+- Need to insert, search, or check prefixes in O(word length) time
+
+### How to Identify
+- Does each operation (insert/search/startsWith) follow the same path-traversal structure?
+- Can you represent the data as a tree where each edge is one character?
+
+### How to Remember
+> **Mental model:** Each node = one character; paths spell words; `is_word` flag marks where words end
 
 **Similar problems:**
 - LeetCode 211: Design Add and Search Words Data Structure

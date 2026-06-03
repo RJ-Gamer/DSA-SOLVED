@@ -236,10 +236,17 @@ and eliminates the need for a temporary variable.
 
 ## Pattern Recognition
 
-> Use the **two-variable sliding DP** pattern when you see:
-> - "Minimum/maximum cost to reach the end with 1 or 2 step jumps"
-> - A recurrence where `dp[i]` depends only on `dp[i-1]` and `dp[i-2]`
-> - Any 1D DP where only the last two states are needed
+### How to Recognize
+- Problem asks for minimum or maximum cost to reach the end with 1 or 2 step jumps
+- Each step has a cost; you pay it before jumping
+- The recurrence depends only on the previous two positions
+
+### How to Identify
+- Is the recurrence `dp[i] = cost[i] + min(dp[i-1], dp[i-2])`?
+- Can you replace the full dp array with two rolling variables since only the last two states matter?
+
+### How to Remember
+> **Mental model:** Same bones as Climbing Stairs but with a cost — minimize instead of count
 
 **Similar problems:**
 - **Climbing Stairs** — same recurrence, count paths instead of minimizing cost

@@ -1,8 +1,8 @@
 # 33. Search in Rotated Sorted Array
 
-**LeetCode:** [https://leetcode.com/problems/search-in-rotated-sorted-array/](https://leetcode.com/problems/search-in-rotated-sorted-array/)
-**Difficulty:** Medium
-**Topics:** [Binary Search] [Array]
+**LeetCode:** [Problem #33](https://leetcode.com/problems/search-in-rotated-sorted-array/)  
+**Difficulty:** Medium  
+**Topics:** `Binary Search` `Array`
 
 ---
 
@@ -190,7 +190,17 @@ if nums[left] <= nums[mid]:  # Check which half is sorted
 
 ## Pattern Recognition
 
-> Use this pattern when you see: A rotated sorted array where you need to find an element, or any problem requiring search in a partially sorted array.
+### How to Recognize
+- O(log n) search is required on a sorted array with a twist
+- The array is sorted but rotated (shifted) at an unknown pivot
+- You need to find an element without a linear scan
+
+### How to Identify
+- At any binary search midpoint, is exactly one half always fully sorted?
+- Can you use the sorted half's range to determine which half to eliminate?
+
+### How to Remember
+> **Mental model:** In a rotation, one half always behaves — search the half you can trust
 
 **Similar problems:**
 - LeetCode 81: Search in Rotated Sorted Array II (with duplicates)

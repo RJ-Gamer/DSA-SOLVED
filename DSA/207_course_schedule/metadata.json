@@ -1,12 +1,4 @@
 {
-  "problem_number": 207,
-  "problem_name": "Course Schedule",
   "difficulty": "Medium",
-  "topics": ["Graph", "Topological Sort", "DFS", "BFS"],
-  "leetcode_url": "https://leetcode.com/problems/course-schedule/",
-  "solution_file": "207_lc_course_schedule.py",
-  "time_complexity": "O(V + E)",
-  "space_complexity": "O(V + E)",
-  "blind_75": false,
-  "neetcode_150": true
+  "topics": ["Graph", "Topological Sort", "DFS", "BFS"]
 }

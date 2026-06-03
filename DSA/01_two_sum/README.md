@@ -243,6 +243,15 @@ def twoSum(nums: list[int], target: int) -> list[int]:
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (nested loops) | O(n²) | O(1) |
+| Optimal (hash map) | O(n) | O(n) |
+
+---
+
 ## Common Mistakes
 
 **1. Storing before checking**
@@ -277,10 +286,17 @@ optimal solution is faster.
 
 ## Pattern Recognition
 
-> Use the **Hash Map complement** pattern when you see:
-> - "Find two elements that sum to X"
-> - "Find a pair that satisfies condition Y"
-> - You need to check "have I seen X before?" in O(1)
+### How to Recognize
+- Problem asks to find two elements that sum (or otherwise combine) to a target
+- You need O(1) membership checks — "have I seen this value before?"
+- The second element can be expressed as `target - current`
+
+### How to Identify
+- Can you express what you're searching for as `something = target - current_element`?
+- Would storing previously-seen elements in a hash map allow a single-pass solution?
+
+### How to Remember
+> **Mental model:** The notebook trick — write down every number you've passed, then check if what you need is already written
 
 **Similar problems:**
 - **Two Sum II (sorted array)** — same idea but use Two Pointers since array is sorted
@@ -316,15 +332,6 @@ In systems processing sensor readings (temperature + pressure pairs,
 for example), finding two sensor values that together indicate a fault
 condition uses the exact same pattern. One pass through the readings,
 hash map lookup for the complement value.
-
----
-
-## Quick Summary
-
-| Approach | Time | Space |
-|---|---|---|
-| Brute Force (nested loops) | O(n²) | O(1) |
-| Optimal (hash map) | O(n) | O(n) |
 
 ---
 

@@ -1,8 +1,8 @@
 # 46. Permutations
 
-**LeetCode:** [https://leetcode.com/problems/permutations/](https://leetcode.com/problems/permutations/)
-**Difficulty:** Medium
-**Topics:** [Backtracking] [Array]
+**LeetCode:** [Problem #46](https://leetcode.com/problems/permutations/)  
+**Difficulty:** Medium  
+**Topics:** `Backtracking` `Array`
 
 ---
 
@@ -210,7 +210,17 @@ new_remaining = remaining[:i] + remaining[i+1:]
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Generate all permutations, arrangements, orderings, or any problem requiring exploration of all possibilities.
+### How to Recognize
+- Problem asks to generate all arrangements, orderings, or permutations
+- Order matters — `[1, 2]` and `[2, 1]` are different results
+- Requires exhaustive exploration of all possibilities
+
+### How to Identify
+- Does choosing one element reduce the remaining problem to a smaller instance of itself?
+- Is the base case reached when no elements remain to place?
+
+### How to Remember
+> **Mental model:** Choose → Explore → Unchoose — undo your choice and try the next option
 
 **Similar problems:**
 - LeetCode 47: Permutations II (with duplicates)

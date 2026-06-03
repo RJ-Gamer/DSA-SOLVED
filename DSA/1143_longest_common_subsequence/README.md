@@ -392,10 +392,17 @@ contiguous characters. They use different recurrences — don't mix them up.
 
 ## Pattern Recognition
 
-> Use the **LCS grid DP** pattern when you see:
-> - "Longest common subsequence of two strings"
-> - "Minimum deletions to make two strings equal"
-> - Any problem comparing two sequences where order matters but gaps are allowed
+### How to Recognize
+- Problem asks for the longest common subsequence of two strings
+- Characters can be skipped — order matters but gaps are allowed
+- Comparing two sequences where the subproblem is defined by one index per string
+
+### How to Identify
+- Does `LCS(i, j)` reduce to `1 + LCS(i-1, j-1)` on a character match, or `max(LCS(i-1,j), LCS(i,j-1))` on mismatch?
+- Can you reduce space from O(m × n) to O(n) by keeping only the previous row?
+
+### How to Remember
+> **Mental model:** Match = extend the chain from the diagonal; mismatch = borrow the best from above or left
 
 **Similar problems:**
 - **Edit Distance** — same grid structure, counts operations instead of matches

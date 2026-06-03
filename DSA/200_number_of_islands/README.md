@@ -1,8 +1,8 @@
 # 200. Number of Islands
 
-**LeetCode:** [https://leetcode.com/problems/number-of-islands/](https://leetcode.com/problems/number-of-islands/)
-**Difficulty:** Medium
-**Topics:** [Graph] [DFS] [BFS] [Matrix]
+**LeetCode:** [Problem #200](https://leetcode.com/problems/number-of-islands/)  
+**Difficulty:** Medium  
+**Topics:** `Graph` `DFS` `BFS` `Matrix`
 
 ---
 
@@ -206,7 +206,17 @@ def dfs(r, c):
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Connected components in a grid, islands, number of clusters, or any 2D grid connectivity problem.
+### How to Recognize
+- Problem asks to count connected components in a 2D grid
+- Connection is horizontal/vertical only (4-directional)
+- Each group of connected '1's (or cells with matching values) counts as one unit
+
+### How to Identify
+- When you find an unvisited '1', can you flood-fill (DFS/BFS) to mark all connected '1's, then increment a counter?
+- Is the visited-state tracked by modifying the grid in place (setting '1' → '0')?
+
+### How to Remember
+> **Mental model:** Each island = one DFS explosion — it floods and marks everything it touches
 
 **Similar problems:**
 - LeetCode 463: Island Perimeter

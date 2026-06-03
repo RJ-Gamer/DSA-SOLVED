@@ -155,6 +155,15 @@ def replaceElements(arr: List[int]) -> List[int]:
 
 ---
 
+## Quick Summary
+
+| Approach | Time | Space |
+|---|---|---|
+| Brute Force (Forward) | O(n²) | O(1) |
+| Optimal (Backward) | O(n) | O(1) |
+
+---
+
 ## Common Mistakes
 
 **1. Overwriting the max before using it**
@@ -167,10 +176,22 @@ When iterating backwards in Python, `range(start, stop, step)` stops *before* th
 
 ## Pattern Recognition
 
-> Use **Reverse Iteration** when:
-> - The result for the current element depends on elements to its **right**.
-> - You find yourself recalculating a "suffix" property (like suffix max, suffix sum).
-> - You're dealing with "Next Greater Element" type problems.
+### How to Recognize
+- The result for each element depends on elements to its right (a suffix property)
+- Iterating left-to-right requires re-scanning from each position — O(n²)
+- Keywords: "replace with greatest/smallest on right", "next greater element", "suffix max/min"
+
+### How to Identify
+- Does iterating right-to-left let you maintain a running maximum you already know?
+- When moving left by one step, does the new "right side" simply add one more element?
+
+### How to Remember
+> **Mental model:** Walk backwards and carry the max — by the time you arrive, you already know the answer
+
+**Similar problems:**
+- **Next Greater Element I/II** — same right-to-left scan with a stack
+- **Daily Temperatures** — find next warmer day; same suffix-scan thinking
+- **Trapping Rain Water** — precompute left-max and right-max arrays using the same reverse pass
 
 ---
 
@@ -184,15 +205,6 @@ Identifying "leaders" in a stream of data where a leader is someone who has a hi
 
 ### 3. Rendering Engines
 In some 2D rendering scenarios, you might need to know the highest Z-index (layer) of objects "behind" or "to the side" of a current object to determine visibility or shadows.
-
----
-
-## Quick Summary
-
-| Approach | Time | Space |
-|---|---|---|
-| Brute Force (Forward) | O(n²) | O(1) |
-| Optimal (Backward) | O(n) | O(1) |
 
 ---
 

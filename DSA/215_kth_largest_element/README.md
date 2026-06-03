@@ -1,8 +1,8 @@
 # 215. Kth Largest Element in an Array
 
-**LeetCode:** [https://leetcode.com/problems/kth-largest-element-in-an-array/](https://leetcode.com/problems/kth-largest-element-in-an-array/)
-**Difficulty:** Medium
-**Topics:** [Heap] [Quick Select] [Sorting]
+**LeetCode:** [Problem #215](https://leetcode.com/problems/kth-largest-element-in-an-array/)  
+**Difficulty:** Medium  
+**Topics:** `Heap` `Quick Select` `Sorting`
 
 ---
 
@@ -200,7 +200,17 @@ if len(heap) > k:
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Find kth largest/smallest, top k elements, or when you need efficient selection without full sorting.
+### How to Recognize
+- Problem asks for the kth largest or smallest element, or the top k elements
+- Full sorting is possible but the constraint hints at a more efficient approach
+- k is much smaller than n
+
+### How to Identify
+- Can you maintain a min-heap of exactly k elements, evicting the smallest when size exceeds k?
+- After processing all elements, does the heap root hold the kth largest?
+
+### How to Remember
+> **Mental model:** Keep the top k in a min heap — kick out the weakest until only the elite remain
 
 **Similar problems:**
 - LeetCode 347: Top K Frequent Elements

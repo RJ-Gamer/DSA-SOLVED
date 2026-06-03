@@ -1,8 +1,8 @@
 # 20. Valid Parentheses
 
-**LeetCode:** [https://leetcode.com/problems/valid-parentheses/](https://leetcode.com/problems/valid-parentheses/)
-**Difficulty:** Easy
-**Topics:** [Stack] [String]
+**LeetCode:** [Problem #20](https://leetcode.com/problems/valid-parentheses/)  
+**Difficulty:** Easy  
+**Topics:** `Stack` `String`
 
 ---
 
@@ -202,7 +202,17 @@ if char in mapping:  # This checks closing brackets
 
 ## Pattern Recognition
 
-> Use this pattern when you see: Matching brackets/parentheses, balanced delimiters, or any problem requiring LIFO structure with matching logic.
+### How to Recognize
+- Problem involves matching or balancing pairs (brackets, tags, delimiters)
+- Each closing element must correspond to the most recently opened one
+- Nested structure where the order of closure is the constraint
+
+### How to Identify
+- Does every closing symbol require a matching opening symbol that came immediately before it (in unclosed order)?
+- Is the matching rule LIFO — last opened must be first closed?
+
+### How to Remember
+> **Mental model:** Stack = LIFO bookkeeper — last opened, first closed
 
 **Similar problems:**
 - LeetCode 1541: Minimum Insertions to Balance a Parentheses String

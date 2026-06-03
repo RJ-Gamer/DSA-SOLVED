@@ -510,10 +510,17 @@ correspond to `word1` (length `m`).
 
 ## Pattern Recognition
 
-> Use the **edit distance grid DP** pattern when you see:
-> - "Minimum operations to transform string A into string B"
-> - "Similarity score between two sequences"
-> - Any problem where the cost at position `(i, j)` depends on three neighbors
+### How to Recognize
+- Problem asks for minimum operations (insert, delete, replace) to transform one string into another
+- Involves comparing two sequences where the cost at each position depends on what's above, left, and diagonal
+- "Edit distance", "string similarity", or "transformation cost" language
+
+### How to Identify
+- Does `dp[i][j]` depend on exactly three neighbors: `dp[i-1][j]` (insert), `dp[i][j-1]` (delete), `dp[i-1][j-1]` (replace/match)?
+- Is the base case pure insertions and deletions along the first row and column?
+
+### How to Remember
+> **Mental model:** 3 neighbors → 3 operations: top = insert, left = delete, diagonal = replace (or free match)
 
 **Similar problems:**
 - **Longest Common Subsequence** — same grid structure, maximize matches instead of minimizing edits
