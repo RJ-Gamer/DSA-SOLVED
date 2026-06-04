@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![LeetCode](https://img.shields.io/badge/LeetCode-Problems-FFA116?style=for-the-badge&logo=leetcode&logoColor=white)](https://leetcode.com/)
-[![Problems](https://img.shields.io/badge/Problems_Solved-33-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
+[![Problems](https://img.shields.io/badge/Problems_Solved-34-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](DSA/)
 [![Docs](https://img.shields.io/badge/Docs-Detailed-F97316?style=for-the-badge&logo=readthedocs&logoColor=white)](DSA/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-F7DF1E?style=for-the-badge&logo=opensourceinitiative&logoColor=black)](https://opensource.org/licenses/MIT)
@@ -61,6 +61,7 @@ dsa_practice/
 |   |-- 121_best_time_to_buy_and_sell/
 |   |-- 124_binary_tree_maximum_path_sum/
 |   |-- 125_valid_palindrome/
+|   |-- 128_longest_consecutive_sequence/
 |   |-- 136_single_number/
 |   |-- 200_number_of_islands/
 |   |-- 206_reverse_linked_list/
@@ -130,6 +131,7 @@ This keeps the repo useful both as a practice log and as a study resource.
 | 121 | Best Time to Buy and Sell Stock | Easy | Array, Two Pointers, Greedy | [Notes](DSA/121_best_time_to_buy_and_sell/) |
 | 124 | Binary Tree Maximum Path Sum | Hard | Binary Tree, DFS, Recursion, Dynamic Programming | [Notes](DSA/124_binary_tree_maximum_path_sum/) |
 | 125 | Valid Palindrome | Easy | String, Two Pointers | [Notes](DSA/125_valid_palindrome/) |
+| 128 | Longest Consecutive Sequence | Medium | Array, Hash Map | [Notes](DSA/128_longest_consecutive_sequence/) |
 | 136 | Single Number | Easy | Bit Manipulation, Array | [Notes](DSA/136_single_number/) |
 | 200 | Number of Islands | Medium | Graph, DFS, BFS, Matrix | [Notes](DSA/200_number_of_islands/) |
 | 206 | Reverse Linked List | Easy | Linked List, Recursion | [Notes](DSA/206_reverse_linked_list/) |
